@@ -54,6 +54,7 @@ const NSString *GotImageDataNotificationIdentifier  = @"GotImageDataNotification
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
     [self.view setNeedsUpdateConstraints];
     [self.tableView reloadData];
 }
