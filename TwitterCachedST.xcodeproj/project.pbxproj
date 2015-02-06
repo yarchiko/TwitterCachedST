@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1ABEA2A41A829E0800840E83 /* UPKSingleRequestCapsule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABEA2A31A829E0800840E83 /* UPKSingleRequestCapsule.m */; };
+		1ABEA2A51A829E0800840E83 /* UPKSingleRequestCapsule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABEA2A31A829E0800840E83 /* UPKSingleRequestCapsule.m */; };
+		1ABEA2A71A82C55E00840E83 /* UPKTwitDefault.db in Resources */ = {isa = PBXBuildFile; fileRef = 1ABEA2A61A82C55E00840E83 /* UPKTwitDefault.db */; };
+		1ABEA2A81A82C55E00840E83 /* UPKTwitDefault.db in Resources */ = {isa = PBXBuildFile; fileRef = 1ABEA2A61A82C55E00840E83 /* UPKTwitDefault.db */; };
+		1ABEA2AB1A83BF1800840E83 /* TestResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 1ABEA2AA1A83BF1800840E83 /* TestResponse.json */; };
+		1ABEA2AC1A83BF1900840E83 /* TestResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 1ABEA2AA1A83BF1800840E83 /* TestResponse.json */; };
+		1ABEA2AF1A83EAC100840E83 /* UPKData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABEA2AE1A83EAC100840E83 /* UPKData.m */; };
+		1ABEA2B01A83EAC100840E83 /* UPKData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABEA2AE1A83EAC100840E83 /* UPKData.m */; };
+		1ABEA2B31A83FE5F00840E83 /* UPKSingleTwitRequestCapsule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABEA2B21A83FE5F00840E83 /* UPKSingleTwitRequestCapsule.m */; };
+		1ABEA2B41A83FE5F00840E83 /* UPKSingleTwitRequestCapsule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABEA2B21A83FE5F00840E83 /* UPKSingleTwitRequestCapsule.m */; };
+		1ABEA2B81A841D3600840E83 /* UPKTwitCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABEA2B71A841D3600840E83 /* UPKTwitCell.m */; };
+		1ABEA2B91A841D3600840E83 /* UPKTwitCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABEA2B71A841D3600840E83 /* UPKTwitCell.m */; };
+		1ABEA2BD1A842FEA00840E83 /* UPKPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABEA2BC1A842FEA00840E83 /* UPKPreferences.m */; };
+		1ABEA2BE1A842FEA00840E83 /* UPKPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABEA2BC1A842FEA00840E83 /* UPKPreferences.m */; };
 		1AE5F7DF1A8011AF00699394 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5F7DE1A8011AF00699394 /* main.m */; };
 		1AE5F7E21A8011AF00699394 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5F7E11A8011AF00699394 /* AppDelegate.m */; };
 		1AE5F7E51A8011AF00699394 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5F7E41A8011AF00699394 /* FirstViewController.m */; };
@@ -15,6 +29,26 @@
 		1AE5F7ED1A8011AF00699394 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AE5F7EC1A8011AF00699394 /* Images.xcassets */; };
 		1AE5F7F01A8011AF00699394 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AE5F7EE1A8011AF00699394 /* LaunchScreen.xib */; };
 		1AE5F7FC1A8011AF00699394 /* TwitterCachedSTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5F7FB1A8011AF00699394 /* TwitterCachedSTTests.m */; };
+		1AE5F8121A80135700699394 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5F8081A80135700699394 /* FMDatabase.m */; };
+		1AE5F8131A80135700699394 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5F8081A80135700699394 /* FMDatabase.m */; };
+		1AE5F8141A80135700699394 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5F80A1A80135700699394 /* FMDatabaseAdditions.m */; };
+		1AE5F8151A80135700699394 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5F80A1A80135700699394 /* FMDatabaseAdditions.m */; };
+		1AE5F8161A80135700699394 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5F80C1A80135700699394 /* FMDatabasePool.m */; };
+		1AE5F8171A80135700699394 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5F80C1A80135700699394 /* FMDatabasePool.m */; };
+		1AE5F8181A80135700699394 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5F80E1A80135700699394 /* FMDatabaseQueue.m */; };
+		1AE5F8191A80135700699394 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5F80E1A80135700699394 /* FMDatabaseQueue.m */; };
+		1AE5F81A1A80135700699394 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5F8111A80135700699394 /* FMResultSet.m */; };
+		1AE5F81B1A80135700699394 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5F8111A80135700699394 /* FMResultSet.m */; };
+		1AE5F8221A80143400699394 /* UPKTwit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5F8211A80143400699394 /* UPKTwit.m */; };
+		1AE5F8231A80143400699394 /* UPKTwit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5F8211A80143400699394 /* UPKTwit.m */; };
+		1AE5F8261A801A1D00699394 /* UPKUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5F8251A801A1D00699394 /* UPKUser.m */; };
+		1AE5F8271A801A1D00699394 /* UPKUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5F8251A801A1D00699394 /* UPKUser.m */; };
+		1AE5F82A1A801BE000699394 /* UPKDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5F8291A801BE000699394 /* UPKDAO.m */; };
+		1AE5F82B1A801BE000699394 /* UPKDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5F8291A801BE000699394 /* UPKDAO.m */; };
+		1AE5F82E1A802D0400699394 /* UPKClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5F82D1A802D0400699394 /* UPKClient.m */; };
+		1AE5F82F1A802D0400699394 /* UPKClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5F82D1A802D0400699394 /* UPKClient.m */; };
+		1AE5F8351A80459300699394 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AE5F8341A80459300699394 /* libsqlite3.dylib */; };
+		1AE5F8361A8045B300699394 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AE5F8341A80459300699394 /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +62,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1ABEA2A21A829E0800840E83 /* UPKSingleRequestCapsule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UPKSingleRequestCapsule.h; path = TwitterClient/UPKSingleRequestCapsule.h; sourceTree = "<group>"; };
+		1ABEA2A31A829E0800840E83 /* UPKSingleRequestCapsule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UPKSingleRequestCapsule.m; path = TwitterClient/UPKSingleRequestCapsule.m; sourceTree = "<group>"; };
+		1ABEA2A61A82C55E00840E83 /* UPKTwitDefault.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = UPKTwitDefault.db; sourceTree = "<group>"; };
+		1ABEA2AA1A83BF1800840E83 /* TestResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestResponse.json; sourceTree = "<group>"; };
+		1ABEA2AD1A83EAC100840E83 /* UPKData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UPKData.h; path = Model/UPKData.h; sourceTree = "<group>"; };
+		1ABEA2AE1A83EAC100840E83 /* UPKData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UPKData.m; path = Model/UPKData.m; sourceTree = "<group>"; };
+		1ABEA2B11A83FE5F00840E83 /* UPKSingleTwitRequestCapsule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UPKSingleTwitRequestCapsule.h; path = TwitterClient/UPKSingleTwitRequestCapsule.h; sourceTree = "<group>"; };
+		1ABEA2B21A83FE5F00840E83 /* UPKSingleTwitRequestCapsule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UPKSingleTwitRequestCapsule.m; path = TwitterClient/UPKSingleTwitRequestCapsule.m; sourceTree = "<group>"; };
+		1ABEA2B61A841D3600840E83 /* UPKTwitCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UPKTwitCell.h; path = TwitCell/UPKTwitCell.h; sourceTree = "<group>"; };
+		1ABEA2B71A841D3600840E83 /* UPKTwitCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UPKTwitCell.m; path = TwitCell/UPKTwitCell.m; sourceTree = "<group>"; };
+		1ABEA2BB1A842FEA00840E83 /* UPKPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UPKPreferences.h; path = Preferences/UPKPreferences.h; sourceTree = "<group>"; };
+		1ABEA2BC1A842FEA00840E83 /* UPKPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UPKPreferences.m; path = Preferences/UPKPreferences.m; sourceTree = "<group>"; };
 		1AE5F7D91A8011AE00699394 /* TwitterCachedST.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterCachedST.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AE5F7DD1A8011AF00699394 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1AE5F7DE1A8011AF00699394 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -43,6 +89,27 @@
 		1AE5F7F51A8011AF00699394 /* TwitterCachedSTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwitterCachedSTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AE5F7FA1A8011AF00699394 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1AE5F7FB1A8011AF00699394 /* TwitterCachedSTTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwitterCachedSTTests.m; sourceTree = "<group>"; };
+		1AE5F8071A80135700699394 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		1AE5F8081A80135700699394 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		1AE5F8091A80135700699394 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		1AE5F80A1A80135700699394 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		1AE5F80B1A80135700699394 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		1AE5F80C1A80135700699394 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		1AE5F80D1A80135700699394 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		1AE5F80E1A80135700699394 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		1AE5F80F1A80135700699394 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		1AE5F8101A80135700699394 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		1AE5F8111A80135700699394 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		1AE5F8201A80143400699394 /* UPKTwit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UPKTwit.h; path = Model/UPKTwit.h; sourceTree = "<group>"; };
+		1AE5F8211A80143400699394 /* UPKTwit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UPKTwit.m; path = Model/UPKTwit.m; sourceTree = "<group>"; };
+		1AE5F8241A801A1D00699394 /* UPKUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UPKUser.h; path = Model/UPKUser.h; sourceTree = "<group>"; };
+		1AE5F8251A801A1D00699394 /* UPKUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UPKUser.m; path = Model/UPKUser.m; sourceTree = "<group>"; };
+		1AE5F8281A801BE000699394 /* UPKDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UPKDAO.h; path = DAO/UPKDAO.h; sourceTree = "<group>"; };
+		1AE5F8291A801BE000699394 /* UPKDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UPKDAO.m; path = DAO/UPKDAO.m; sourceTree = "<group>"; };
+		1AE5F82C1A802D0400699394 /* UPKClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UPKClient.h; path = TwitterClient/UPKClient.h; sourceTree = "<group>"; };
+		1AE5F82D1A802D0400699394 /* UPKClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UPKClient.m; path = TwitterClient/UPKClient.m; sourceTree = "<group>"; };
+		1AE5F8331A8031A600699394 /* UPKTwitAsyncProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UPKTwitAsyncProvider.h; path = DataProviderProtocol/UPKTwitAsyncProvider.h; sourceTree = "<group>"; };
+		1AE5F8341A80459300699394 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AE5F8351A80459300699394 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,15 +125,52 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AE5F8361A8045B300699394 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1ABEA2A11A829DDB00840E83 /* SingleRequestCapsule */ = {
+			isa = PBXGroup;
+			children = (
+				1ABEA2A21A829E0800840E83 /* UPKSingleRequestCapsule.h */,
+				1ABEA2A31A829E0800840E83 /* UPKSingleRequestCapsule.m */,
+				1ABEA2B11A83FE5F00840E83 /* UPKSingleTwitRequestCapsule.h */,
+				1ABEA2B21A83FE5F00840E83 /* UPKSingleTwitRequestCapsule.m */,
+			);
+			name = SingleRequestCapsule;
+			sourceTree = "<group>";
+		};
+		1ABEA2B51A841CF800840E83 /* TwitCell */ = {
+			isa = PBXGroup;
+			children = (
+				1ABEA2B61A841D3600840E83 /* UPKTwitCell.h */,
+				1ABEA2B71A841D3600840E83 /* UPKTwitCell.m */,
+			);
+			name = TwitCell;
+			sourceTree = "<group>";
+		};
+		1ABEA2BA1A842FC100840E83 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				1ABEA2BB1A842FEA00840E83 /* UPKPreferences.h */,
+				1ABEA2BC1A842FEA00840E83 /* UPKPreferences.m */,
+			);
+			name = Preferences;
+			sourceTree = "<group>";
+		};
 		1AE5F7D01A8011AE00699394 = {
 			isa = PBXGroup;
 			children = (
+				1ABEA2BA1A842FC100840E83 /* Preferences */,
+				1AE5F8341A80459300699394 /* libsqlite3.dylib */,
+				1AE5F8301A80311100699394 /* DataProviderProtocol */,
+				1AE5F81F1A80138F00699394 /* TwitterClient */,
+				1AE5F81E1A80138900699394 /* DAO */,
+				1AE5F81D1A80137F00699394 /* Model */,
+				1AE5F8051A80133A00699394 /* ThirtParty */,
 				1AE5F7DB1A8011AE00699394 /* TwitterCachedST */,
 				1AE5F7F81A8011AF00699394 /* TwitterCachedSTTests */,
 				1AE5F7DA1A8011AE00699394 /* Products */,
@@ -84,6 +189,7 @@
 		1AE5F7DB1A8011AE00699394 /* TwitterCachedST */ = {
 			isa = PBXGroup;
 			children = (
+				1ABEA2B51A841CF800840E83 /* TwitCell */,
 				1AE5F7E01A8011AF00699394 /* AppDelegate.h */,
 				1AE5F7E11A8011AF00699394 /* AppDelegate.m */,
 				1AE5F7E31A8011AF00699394 /* FirstViewController.h */,
@@ -101,8 +207,10 @@
 		1AE5F7DC1A8011AF00699394 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1ABEA2A61A82C55E00840E83 /* UPKTwitDefault.db */,
 				1AE5F7DD1A8011AF00699394 /* Info.plist */,
 				1AE5F7DE1A8011AF00699394 /* main.m */,
+				1ABEA2AA1A83BF1800840E83 /* TestResponse.json */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -122,6 +230,73 @@
 				1AE5F7FA1A8011AF00699394 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1AE5F8051A80133A00699394 /* ThirtParty */ = {
+			isa = PBXGroup;
+			children = (
+				1AE5F8061A80135700699394 /* fmdb */,
+			);
+			name = ThirtParty;
+			path = TwitterCachedST;
+			sourceTree = "<group>";
+		};
+		1AE5F8061A80135700699394 /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				1AE5F8071A80135700699394 /* FMDatabase.h */,
+				1AE5F8081A80135700699394 /* FMDatabase.m */,
+				1AE5F8091A80135700699394 /* FMDatabaseAdditions.h */,
+				1AE5F80A1A80135700699394 /* FMDatabaseAdditions.m */,
+				1AE5F80B1A80135700699394 /* FMDatabasePool.h */,
+				1AE5F80C1A80135700699394 /* FMDatabasePool.m */,
+				1AE5F80D1A80135700699394 /* FMDatabaseQueue.h */,
+				1AE5F80E1A80135700699394 /* FMDatabaseQueue.m */,
+				1AE5F80F1A80135700699394 /* FMDB.h */,
+				1AE5F8101A80135700699394 /* FMResultSet.h */,
+				1AE5F8111A80135700699394 /* FMResultSet.m */,
+			);
+			path = fmdb;
+			sourceTree = "<group>";
+		};
+		1AE5F81D1A80137F00699394 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1AE5F8201A80143400699394 /* UPKTwit.h */,
+				1AE5F8211A80143400699394 /* UPKTwit.m */,
+				1AE5F8241A801A1D00699394 /* UPKUser.h */,
+				1AE5F8251A801A1D00699394 /* UPKUser.m */,
+				1ABEA2AD1A83EAC100840E83 /* UPKData.h */,
+				1ABEA2AE1A83EAC100840E83 /* UPKData.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		1AE5F81E1A80138900699394 /* DAO */ = {
+			isa = PBXGroup;
+			children = (
+				1AE5F8281A801BE000699394 /* UPKDAO.h */,
+				1AE5F8291A801BE000699394 /* UPKDAO.m */,
+			);
+			name = DAO;
+			sourceTree = "<group>";
+		};
+		1AE5F81F1A80138F00699394 /* TwitterClient */ = {
+			isa = PBXGroup;
+			children = (
+				1ABEA2A11A829DDB00840E83 /* SingleRequestCapsule */,
+				1AE5F82C1A802D0400699394 /* UPKClient.h */,
+				1AE5F82D1A802D0400699394 /* UPKClient.m */,
+			);
+			name = TwitterClient;
+			sourceTree = "<group>";
+		};
+		1AE5F8301A80311100699394 /* DataProviderProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				1AE5F8331A8031A600699394 /* UPKTwitAsyncProvider.h */,
+			);
+			name = DataProviderProtocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,6 +381,8 @@
 			files = (
 				1AE5F7EB1A8011AF00699394 /* Main.storyboard in Resources */,
 				1AE5F7F01A8011AF00699394 /* LaunchScreen.xib in Resources */,
+				1ABEA2AB1A83BF1800840E83 /* TestResponse.json in Resources */,
+				1ABEA2A71A82C55E00840E83 /* UPKTwitDefault.db in Resources */,
 				1AE5F7ED1A8011AF00699394 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -214,6 +391,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ABEA2AC1A83BF1900840E83 /* TestResponse.json in Resources */,
+				1ABEA2A81A82C55E00840E83 /* UPKTwitDefault.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,9 +404,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AE5F7E81A8011AF00699394 /* SecondViewController.m in Sources */,
+				1AE5F8181A80135700699394 /* FMDatabaseQueue.m in Sources */,
+				1AE5F8261A801A1D00699394 /* UPKUser.m in Sources */,
+				1AE5F82A1A801BE000699394 /* UPKDAO.m in Sources */,
 				1AE5F7E21A8011AF00699394 /* AppDelegate.m in Sources */,
 				1AE5F7E51A8011AF00699394 /* FirstViewController.m in Sources */,
+				1ABEA2A41A829E0800840E83 /* UPKSingleRequestCapsule.m in Sources */,
+				1ABEA2BD1A842FEA00840E83 /* UPKPreferences.m in Sources */,
+				1AE5F8121A80135700699394 /* FMDatabase.m in Sources */,
+				1ABEA2B31A83FE5F00840E83 /* UPKSingleTwitRequestCapsule.m in Sources */,
+				1AE5F82E1A802D0400699394 /* UPKClient.m in Sources */,
+				1AE5F8161A80135700699394 /* FMDatabasePool.m in Sources */,
+				1AE5F8221A80143400699394 /* UPKTwit.m in Sources */,
+				1ABEA2B81A841D3600840E83 /* UPKTwitCell.m in Sources */,
+				1ABEA2AF1A83EAC100840E83 /* UPKData.m in Sources */,
+				1AE5F81A1A80135700699394 /* FMResultSet.m in Sources */,
 				1AE5F7DF1A8011AF00699394 /* main.m in Sources */,
+				1AE5F8141A80135700699394 /* FMDatabaseAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,7 +428,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AE5F81B1A80135700699394 /* FMResultSet.m in Sources */,
+				1ABEA2BE1A842FEA00840E83 /* UPKPreferences.m in Sources */,
+				1AE5F8191A80135700699394 /* FMDatabaseQueue.m in Sources */,
+				1ABEA2B01A83EAC100840E83 /* UPKData.m in Sources */,
 				1AE5F7FC1A8011AF00699394 /* TwitterCachedSTTests.m in Sources */,
+				1ABEA2B41A83FE5F00840E83 /* UPKSingleTwitRequestCapsule.m in Sources */,
+				1AE5F8271A801A1D00699394 /* UPKUser.m in Sources */,
+				1AE5F8171A80135700699394 /* FMDatabasePool.m in Sources */,
+				1ABEA2A51A829E0800840E83 /* UPKSingleRequestCapsule.m in Sources */,
+				1AE5F82F1A802D0400699394 /* UPKClient.m in Sources */,
+				1AE5F8131A80135700699394 /* FMDatabase.m in Sources */,
+				1AE5F82B1A801BE000699394 /* UPKDAO.m in Sources */,
+				1AE5F8151A80135700699394 /* FMDatabaseAdditions.m in Sources */,
+				1ABEA2B91A841D3600840E83 /* UPKTwitCell.m in Sources */,
+				1AE5F8231A80143400699394 /* UPKTwit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +625,7 @@
 				1AE5F8011A8011AF00699394 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1AE5F8021A8011AF00699394 /* Build configuration list for PBXNativeTarget "TwitterCachedSTTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +634,7 @@
 				1AE5F8041A8011AF00699394 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -7,8 +7,12 @@
 //
 
 #import "SecondViewController.h"
+#import "UPKPreferences.h"
 
 @interface SecondViewController ()
+@property (weak, nonatomic) IBOutlet UIView *hideAvatarsView;
+@property (weak, nonatomic) IBOutlet UISwitch *hideAvatarsSwitcher;
+@property (weak, nonatomic) IBOutlet UILabel *hideAvatarsLabel;
 
 @end
 
@@ -16,12 +20,33 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"avatarfacepreview"]];
+    BOOL avatarsEnabled = [UPKPreferences sharedPreferences].avatarsEnabled;
+    self.hideAvatarsView.hidden = avatarsEnabled;
+    [self.hideAvatarsSwitcher setOn:avatarsEnabled];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+- (IBAction)hideAvatarsSwitcher:(UISwitch *)switcher {
+    [[UPKPreferences sharedPreferences] setAvatarsEnabled:switcher.isOn];
+    __weak UIView *hideAvatarsView = self.hideAvatarsView;
+    BOOL hide = switcher.isOn;
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                             if (hide) {
+                                 hideAvatarsView.alpha=0;
+                             } else {
+                                 hideAvatarsView.hidden= NO;
+                                 hideAvatarsView.alpha=1;
+                             }
+                         } completion:^(BOOL b) {
+                             if (hide) {
+                                 hideAvatarsView.hidden= YES;
+                             }
+                         }];
 }
 
 @end
