@@ -14,7 +14,9 @@
 
 NSString* const UPKDataFromDB = @"UPKDataFromDB";
 
-@interface UPKDAO ()
+@interface UPKDAO () {
+    dispatch_queue_t _dbRequestQueue;
+}
 @property (nonatomic, strong) FMDatabaseQueue *fmdbQueue;
 @property (nonatomic, strong) NSMutableDictionary *dataDictionary;
 @end
@@ -26,6 +28,7 @@ NSString* const UPKDataFromDB = @"UPKDataFromDB";
     dispatch_once(&onceToken, ^{
         __dao = [[self alloc] init];
         __dao->_dataDictionary = [NSMutableDictionary dictionary];
+        __dao->_dbRequestQueue = dispatch_queue_create("UPK.DAO.DB.Request.Queue", DISPATCH_QUEUE_SERIAL);
     });
     return __dao;
 }
@@ -43,7 +46,7 @@ NSString* const UPKDataFromDB = @"UPKDataFromDB";
             [client dataForUrlString:urlString andNotification:notification];
             //поищу данные в БД
             FMDatabaseQueue *queue = self.fmdbQueue;
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            dispatch_async(_dbRequestQueue, ^{
                 [queue inDatabase:^(FMDatabase *db) {
                     //пока простейшая реализация - вернуть все, что было в БД
                     FMResultSet *rs =[db executeQuery:@"select * from data where urlString in (?)", urlString];
@@ -73,7 +76,7 @@ NSString* const UPKDataFromDB = @"UPKDataFromDB";
     if (data && urlString) {
         [self.dataDictionary setObject:data forKey:urlString];
         FMDatabaseQueue *queue = self.fmdbQueue;
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        dispatch_async(_dbRequestQueue, ^{
             [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
                 BOOL success = [db executeUpdate:@"delete from 'data' where urlString=(?)", urlString];
                 if (success) {
@@ -100,7 +103,7 @@ NSString* const UPKDataFromDB = @"UPKDataFromDB";
     //теперь пока данные грузятся получу локальные данные, удовлетворяющие этому же запросу
     __block NSMutableArray *twitsAndUsers = [NSMutableArray arrayWithCapacity:count];
     FMDatabaseQueue *queue = self.fmdbQueue;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+    dispatch_async(_dbRequestQueue, ^{
         [queue inDatabase:^(FMDatabase *db) {
             //пока простейшая реализация - вернуть все, что было в БД
             FMResultSet *rs =[db executeQuery:@"select * from twits"];
@@ -139,7 +142,7 @@ NSString* const UPKDataFromDB = @"UPKDataFromDB";
     //простейший вариант - прибить те, что были и сохранить новые
     NSArray *twitsAndUsers = note.object;
     FMDatabaseQueue *queue = self.fmdbQueue;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+    dispatch_async(_dbRequestQueue, ^{
         [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
             BOOL success = [db executeStatements:@"delete from 'users'; delete from 'twits'"];
             if (!success) {

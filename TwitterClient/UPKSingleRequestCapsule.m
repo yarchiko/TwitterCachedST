@@ -13,49 +13,20 @@ NSString* const UPKSingleRequestCapsule_ResponseData    = @"UPKSingleRequestCaps
 NSString* const UPKSingleRequestCapsule_Error           = @"UPKSingleRequestCapsule_Error";
 NSString* const UPKSingleRequestCapsule_Entity          = @"UPKSingleRequestCapsule_Entity";
 
-@interface UPKSingleRequestCapsule () <NSURLConnectionDelegate> {
-    NSMutableData *_responseData;
-    NSURLConnection *_connection;
-    NSError *_error;
-}
-
-@end
-
 @implementation UPKSingleRequestCapsule
 
-- (instancetype) initWithUrlString:(NSString *)urlString timeoutInterval:(NSTimeInterval)timeoutInterval headers:(NSDictionary *)headersDic requestParams:(NSDictionary *)requestParams notifyOnResponse:(NSString *)notification {
+- (instancetype) initWithUrlString:(NSString *)urlString timeoutInterval:(NSTimeInterval)timeoutInterval requestParams:(NSDictionary *)requestParams notifyOnResponse:(NSString *)notification {
     NSAssert(urlString.length && notification && timeoutInterval, @"параметры должны быть ненулевыми!");
     self = [super init];
     if (self) {
         _notification = notification;
-        NSString *encodedResponseParams = [self encodeResponseParams:requestParams];
-        if (encodedResponseParams.length) {
-            urlString = [NSString stringWithFormat:@"%@?%@", urlString, encodedResponseParams];
-        }
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:timeoutInterval];
-        for (NSString *header in headersDic) {
-            [request addValue:[headersDic valueForKey:header] forHTTPHeaderField:header];
-        }
-        [request addValue:@"application/x-www-form-urlencoded; charset=utf-8"forHTTPHeaderField:@"Content-Type"];
-        [request addValue:@"0" forHTTPHeaderField:@"Content-Length"];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:timeoutInterval];
         _connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
         [_connection scheduleInRunLoop:[NSRunLoop mainRunLoop]
                                forMode:NSDefaultRunLoopMode];
         [_connection start];
     }
     return self;
-}
-
-- (NSString *)encodeResponseParams:(NSDictionary*)dictionary {
-    NSMutableArray *parts = [[NSMutableArray alloc] init];
-    for (NSString *key in dictionary) {
-        NSString *encodedValue = [[dictionary objectForKey:key] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        NSString *encodedKey = [key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        NSString *part = [NSString stringWithFormat: @"%@=%@", encodedKey, encodedValue];
-        [parts addObject:part];
-    }
-    NSString *encodedResponseParams = [parts componentsJoinedByString:@"&"];
-    return encodedResponseParams;
 }
 
 - (NSData *)responseData {

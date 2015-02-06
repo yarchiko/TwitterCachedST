@@ -30,8 +30,8 @@ const NSString *GotImageDataNotificationIdentifier  = @"GotImageDataNotification
 
 - (NSUInteger)maxNumberOfTicks {
 #if (DEBUG)
-    return 10 * [self ticksPerSecond];
-#endif;
+    return 20 * [self ticksPerSecond];
+#endif
     return 60 * [self ticksPerSecond];
 }
 
@@ -53,6 +53,11 @@ const NSString *GotImageDataNotificationIdentifier  = @"GotImageDataNotification
     [self.view endEditing:YES];
 }
 
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [self.view setNeedsUpdateConstraints];
+    [self.tableView reloadData];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self updateTimerIndicatorValue];
@@ -68,7 +73,8 @@ const NSString *GotImageDataNotificationIdentifier  = @"GotImageDataNotification
     if (!self.reloadTimer) {
         self.reloadTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/[self ticksPerSecond] target:self selector:@selector(reloadTimerTick:) userInfo:nil repeats:YES];
     }
-    NSString *screenName = self.screenNameTextField.text.length ? self.screenNameTextField.text : @"bobuk";
+    NSString *screenNameTextFieldText = [self.screenNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString *screenName = screenNameTextFieldText.length ? screenNameTextFieldText : @"ksenks";
     [[UPKDAO sharedDAO] twitListForUserScreenName:screenName withMaxId:nil andCount:20 andNotification:[UpdateTwitsNotificationIdentifier copy]];
 }
 
@@ -152,9 +158,6 @@ const NSString *GotImageDataNotificationIdentifier  = @"GotImageDataNotification
             [rowsToReload addObject:[NSIndexPath indexPathForRow:index inSection:0]];
         }
     }
-#if (DEBUG)
-    NSLog(@"<%@> <%@>", rowsToReload, urlString);
-#endif
     if (rowsToReload.count) {
         [self.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationAutomatic];
     }

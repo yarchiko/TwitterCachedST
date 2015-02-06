@@ -18,13 +18,28 @@
 
 @implementation UPKTwitCell
 
+- (void)prepareForReuse {
+    [self setNeedsUpdateConstraints];
+    [self.layer removeAllAnimations];
+}
+
 - (void)prepareViewWithUserScreenName:(NSString *)screenName andText:(NSString *)text andImgData:(NSData *)imgData {
     if (imgData) {
         self.twitImgView.image = [UIImage imageWithData:imgData];
     }
     BOOL showAvatar = (imgData != nil) && [UPKPreferences sharedPreferences].avatarsEnabled;
     self.imageWidth.constant = showAvatar ? self.twitImgView.frame.size.height : 0;
-    [self setNeedsUpdateConstraints];
+    if (showAvatar) {
+        __weak UPKTwitCell *weakSelf = self;
+        [UIView animateWithDuration:0.3 animations:^{
+            [weakSelf layoutIfNeeded];
+        } completion:^(BOOL finished) {
+            weakSelf.imageWidth.constant = showAvatar ? weakSelf.twitImgView.frame.size.height : 0;
+            [weakSelf layoutIfNeeded];
+        }];
+    } else {
+        [self layoutIfNeeded];
+    }
     self.twitUserScreenName.text = screenName;
     self.twitText.text = text;
 }

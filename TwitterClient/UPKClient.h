@@ -9,16 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "UPKTwitAsyncProvider.h"
 
-#ifndef UPK_TWITTER_OAUTH_PARAMS
-    #define UPK_TWITTER_OAUTH_PARAMS
-    #define UPK_TWITTER_OAUTH_CONSUMER_KEY  @""
-    #define UPK_TWITTER_OAUTH_NONCE         @""
-    #define UPK_TWITTER_OAUTH_SIGNATURE     @""
-    #define UPK_TWITTER_OAUTH_TIMESTAMP     @""
-    #define UPK_TWITTER_OAUTH_TOKEN         @""
-
+#ifndef USE_DUMP_RESPONSE
     #define USE_DUMP_RESPONSE 0
-
 #endif
 
 extern NSString* const UPKRequestUrlString;

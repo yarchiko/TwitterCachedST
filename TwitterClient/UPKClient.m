@@ -12,6 +12,7 @@
 #import "UPKSingleTwitRequestCapsule.h"
 #import "UPKTwit.h"
 #import "UPKUser.h"
+#include <stdlib.h>
 
 NSString* const UPKRequestUrlString = @"UPKRequestUrlString";
 
@@ -39,7 +40,7 @@ NSString* const UPKRequestUrlString = @"UPKRequestUrlString";
 
 - (NSData *)dataForUrlString:(NSString *)urlString andNotification:(NSString *)notification {
     dispatch_async(_requestQueue, ^{
-        UPKSingleRequestCapsule *capsule = [[UPKSingleRequestCapsule alloc] initWithUrlString:urlString timeoutInterval:50 headers:nil requestParams:nil notifyOnResponse:notification];
+        UPKSingleRequestCapsule *capsule = [[UPKSingleRequestCapsule alloc] initWithUrlString:urlString timeoutInterval:50 requestParams:nil notifyOnResponse:notification];
         [_capsules addObject:capsule];
     });
     return nil;
@@ -48,15 +49,8 @@ NSString* const UPKRequestUrlString = @"UPKRequestUrlString";
 - (void)twitListForUserScreenName:(NSString *)screenName withMaxId:(NSString *)maxTwitId andCount:(NSUInteger)count andNotification:(NSString *)notification {
     dispatch_async(_requestQueue, ^{
         NSString *urlString = @"https://api.twitter.com/1.1/statuses/user_timeline.json";//@"http://requestb.in/nnsd18nn";
-        NSString *oauth_consumer_key = UPK_TWITTER_OAUTH_CONSUMER_KEY;
-        NSString *oauth_nonce = UPK_TWITTER_OAUTH_NONCE;
-        NSString *oauth_signature = UPK_TWITTER_OAUTH_SIGNATURE;
-        NSString *oauth_timestamp = UPK_TWITTER_OAUTH_TIMESTAMP;
-        NSString *oauth_token = UPK_TWITTER_OAUTH_TOKEN;
-        NSString *authValue = [NSString stringWithFormat:@"OAuth oauth_consumer_key=\"%@\", oauth_nonce=\"%@\", oauth_signature=\"%@\", oauth_signature_method=\"HMAC-SHA1\", oauth_timestamp=\"%@\", oauth_token=\"%@\", oauth_version=\"1.0\"", oauth_consumer_key, oauth_nonce, oauth_signature, oauth_timestamp, oauth_token];
-        NSDictionary *headers = @{@"Authorization":authValue};
         NSDictionary *requestParams = @{@"count":@"10",@"screen_name":screenName};
-        UPKSingleRequestCapsule *capsule = [[UPKSingleTwitRequestCapsule alloc] initWithUrlString:urlString timeoutInterval:50 headers:headers requestParams:requestParams notifyOnResponse:notification];
+        UPKSingleRequestCapsule *capsule = [[UPKSingleTwitRequestCapsule alloc] initWithUrlString:urlString timeoutInterval:50 requestParams:requestParams notifyOnResponse:notification];
         [_capsules addObject:capsule];
     });
 }

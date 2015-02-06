@@ -29,6 +29,7 @@
 
 
 - (IBAction)hideAvatarsSwitcher:(UISwitch *)switcher {
+    [self.view.layer removeAllAnimations];
     [[UPKPreferences sharedPreferences] setAvatarsEnabled:switcher.isOn];
     __weak UIView *hideAvatarsView = self.hideAvatarsView;
     BOOL hide = switcher.isOn;
