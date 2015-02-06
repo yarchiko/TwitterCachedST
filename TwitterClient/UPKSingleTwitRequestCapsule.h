@@ -8,6 +8,12 @@
 
 #import "UPKSingleRequestCapsule.h"
 
+#ifndef UPK_TWITTER_OAUTH_PARAMS
+    #define UPK_TWITTER_OAUTH_PARAMS
+    #define UPK_TWITTER_OAUTH_CONSUMER_KEY  @""
+    #define UPK_TWITTER_OAUTH_TOKEN         @""
+#endif
+
 @interface UPKSingleTwitRequestCapsule : UPKSingleRequestCapsule
 
 @end

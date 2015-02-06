@@ -11,7 +11,7 @@
 #import <CommonCrypto/CommonDigest.h>
 #import <CommonCrypto/CommonHMAC.h>
 
-#define UPK_HMAC_SECRET @"H513sLaD52ck9cfylUq3Puw1VjoRgz25EcYg8CaUChhNxnqfvi&7rTc5J9BSCoYbEdjEfba1o260inXLa3yJBL2oVbMN4hbR"
+#define UPK_HMAC_SECRET @""
 
 @implementation UPKSingleTwitRequestCapsule
 
