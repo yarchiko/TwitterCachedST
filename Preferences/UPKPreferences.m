@@ -26,7 +26,7 @@ NSString *const UPKAvatarsEnabled = @"UPKAvatarsEnabled";
     //
     // Устанавливаем начальные значения
     //
-    [defaultValues setObject:@(NO) forKey:UPKAvatarsEnabled];
+    [defaultValues setObject:@(YES) forKey:UPKAvatarsEnabled];
     
     NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
     [defs registerDefaults: defaultValues];

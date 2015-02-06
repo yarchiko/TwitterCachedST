@@ -31,7 +31,7 @@
     self.imageWidth.constant = showAvatar ? self.twitImgView.frame.size.height : 0;
     if (showAvatar) {
         __weak UPKTwitCell *weakSelf = self;
-        [UIView animateWithDuration:0.3 animations:^{
+        [UIView animateWithDuration:0.01 animations:^{
             [weakSelf layoutIfNeeded];
         } completion:^(BOOL finished) {
             weakSelf.imageWidth.constant = showAvatar ? weakSelf.twitImgView.frame.size.height : 0;
