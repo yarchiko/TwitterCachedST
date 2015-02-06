@@ -75,7 +75,7 @@ NSString* const UPKDataFromDB = @"UPKDataFromDB";
         FMDatabaseQueue *queue = self.fmdbQueue;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
             [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-                BOOL success = [db executeQuery:@"delete from 'data' where urlString=(?)", urlString];
+                BOOL success = [db executeUpdate:@"delete from 'data' where urlString=(?)", urlString];
                 if (success) {
                     success = [db executeUpdate:@"insert into 'data' (urlString,data) values (?,?)", urlString, data];
                 }

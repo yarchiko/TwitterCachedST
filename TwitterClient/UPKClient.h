@@ -16,6 +16,9 @@
     #define UPK_TWITTER_OAUTH_SIGNATURE     @""
     #define UPK_TWITTER_OAUTH_TIMESTAMP     @""
     #define UPK_TWITTER_OAUTH_TOKEN         @""
+
+    #define USE_DUMP_RESPONSE 0
+
 #endif
 
 extern NSString* const UPKRequestUrlString;

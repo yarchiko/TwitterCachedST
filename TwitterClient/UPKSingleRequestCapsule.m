@@ -32,10 +32,12 @@ NSString* const UPKSingleRequestCapsule_Entity          = @"UPKSingleRequestCaps
         if (encodedResponseParams.length) {
             urlString = [NSString stringWithFormat:@"%@?%@", urlString, encodedResponseParams];
         }
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:timeoutInterval];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:timeoutInterval];
         for (NSString *header in headersDic) {
             [request addValue:[headersDic valueForKey:header] forHTTPHeaderField:header];
         }
+        [request addValue:@"application/x-www-form-urlencoded; charset=utf-8"forHTTPHeaderField:@"Content-Type"];
+        [request addValue:@"0" forHTTPHeaderField:@"Content-Length"];
         _connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
         [_connection scheduleInRunLoop:[NSRunLoop mainRunLoop]
                                forMode:NSDefaultRunLoopMode];

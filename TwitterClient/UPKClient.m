@@ -15,8 +15,6 @@
 
 NSString* const UPKRequestUrlString = @"UPKRequestUrlString";
 
-#define USE_DUMP_RESPONSE 1
-
 @interface UPKClient () {
     dispatch_queue_t _requestQueue;
     NSMutableArray *_capsules;
@@ -74,9 +72,9 @@ NSString* const UPKRequestUrlString = @"UPKRequestUrlString";
         [capsule cancel];
         [_capsules removeObject:capsule];
     });
-    if (finished && responseData) {
+    if (finished) {
         if ([capsule isKindOfClass:[UPKSingleTwitRequestCapsule class]]) {
-            id obj = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
+            id obj = responseData ? [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error] : nil;
 #if (DEBUG)
             NSLog(@"Got: %@", obj);
 #endif
@@ -109,7 +107,7 @@ NSString* const UPKRequestUrlString = @"UPKRequestUrlString";
             NSMutableArray *objects = [NSMutableArray arrayWithArray:twits];
             [objects addObjectsFromArray:[users allValues]];
             [[NSNotificationCenter defaultCenter] postNotificationName:notification object:objects userInfo:@{UPKRequestUrlString:capsule.urlString}];
-        } else {
+        } else if (responseData) {
             [[UPKDAO sharedDAO] finishedLoadingUrlString:capsule.urlString withData:responseData andNotification:notification];
         }
     }

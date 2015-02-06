@@ -29,6 +29,9 @@ const NSString *GotImageDataNotificationIdentifier  = @"GotImageDataNotification
 @implementation FirstViewController
 
 - (NSUInteger)maxNumberOfTicks {
+#if (DEBUG)
+    return 10 * [self ticksPerSecond];
+#endif;
     return 60 * [self ticksPerSecond];
 }
 
@@ -149,6 +152,9 @@ const NSString *GotImageDataNotificationIdentifier  = @"GotImageDataNotification
             [rowsToReload addObject:[NSIndexPath indexPathForRow:index inSection:0]];
         }
     }
+#if (DEBUG)
+    NSLog(@"<%@> <%@>", rowsToReload, urlString);
+#endif
     if (rowsToReload.count) {
         [self.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationAutomatic];
     }
