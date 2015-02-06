@@ -18,10 +18,6 @@
 
 @implementation UPKTwitCell
 
-- (void)awakeFromNib {
-    self.twitImgView.layer.cornerRadius = 5.0;
-}
-
 - (void)prepareViewWithUserScreenName:(NSString *)screenName andText:(NSString *)text andImgData:(NSData *)imgData {
     if (imgData) {
         self.twitImgView.image = [UIImage imageWithData:imgData];
