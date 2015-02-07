@@ -13,6 +13,8 @@
 #import "UPKTwitCell.h"
 #import "UPKPreferences.h"
 
+#define SHOW_DATE_STRING 0
+
 const NSString *UpdateTwitsNotificationIdentifier   = @"UpdateTwitsNotificationIdentifier";
 const NSString *GotImageDataNotificationIdentifier  = @"GotImageDataNotificationIdentifier";
 
@@ -142,6 +144,12 @@ const NSString *GotImageDataNotificationIdentifier  = @"GotImageDataNotification
         imgData = [[UPKDAO sharedDAO] dataForUrlString:user.profileImgUrl andNotification:[GotImageDataNotificationIdentifier copy]];
         //если же данные есть в кеше - то разу их помещу на экран
     }
+#if (SHOW_DATE_STRING)
+    NSString *dateString = twit.dateString;
+    if (dateString) {
+        userScreenName = [NSString stringWithFormat:@"%@ %@", userScreenName, dateString];
+    }
+#endif
     [cell prepareViewWithUserScreenName:userScreenName andText:twitText andImgData:imgData];
     return cell;
 }

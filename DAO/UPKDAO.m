@@ -123,6 +123,7 @@ NSString* const UPKDataFromDB = @"UPKDataFromDB";
                 twit.idString = [rs stringForColumn:@"idString"];
                 twit.userIdString = [rs stringForColumn:@"userIdString"];
                 twit.text = [rs stringForColumn:@"text"];
+                twit.dateString = [rs stringForColumn:@"dateString"];
                 [twitsAndUsers addObject:twit];
                 [userIdsInUse addObject:twit.userIdString];
             }
@@ -164,7 +165,7 @@ NSString* const UPKDataFromDB = @"UPKDataFromDB";
             for (id twitOrUser in twitsAndUsers) {
                 if ([twitOrUser isKindOfClass:[UPKTwit class]]) {
                     UPKTwit *twit = twitOrUser;
-                    success = [db executeUpdate:@"insert into 'twits' (idString, userIdString, text) values (?, ?, ?)", twit.idString, twit.userIdString, twit.text];
+                    success = [db executeUpdate:@"insert into 'twits' (idString, userIdString, text, dateString) values (?, ?, ?, ?)", twit.idString, twit.userIdString, twit.text, twit.dateString];
                 } else if ([twitOrUser isKindOfClass:[UPKUser class]]) {
                     UPKUser *user = twitOrUser;
                     success = [db executeUpdate:@"insert into 'users' (idString, screenName, profileImgUrl) values (?,?,?)", user.idString, user.screenName, user.profileImgUrl];

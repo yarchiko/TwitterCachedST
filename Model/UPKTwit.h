@@ -12,6 +12,7 @@
 @property (nonatomic, strong) NSString *idString;
 @property (nonatomic, strong) NSString *userIdString;
 @property (nonatomic, strong) NSString *text;
+@property (nonatomic, strong) NSString *dateString;
 
 + (NSArray *)twitAndUserAfterProcessingObject:(NSDictionary *)obj;
 @end
