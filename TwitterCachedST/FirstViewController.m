@@ -29,6 +29,7 @@ const NSString *GotImageDataNotificationIdentifier  = @"GotImageDataNotification
 @implementation FirstViewController
 
 - (NSUInteger)maxNumberOfTicks {
+    //костанта перед умножением на ticksPerSecond - количество секунд
 #if (DEBUG)
     return 20 * [self ticksPerSecond];
 #endif
@@ -36,6 +37,7 @@ const NSString *GotImageDataNotificationIdentifier  = @"GotImageDataNotification
 }
 
 - (NSUInteger)ticksPerSecond {
+    //сколько раз в секунду стоит срабатывать таймеру, чтобы мы наиболее точно отсчитывали время
     return 2;
 }
 
@@ -45,11 +47,14 @@ const NSString *GotImageDataNotificationIdentifier  = @"GotImageDataNotification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTwits:) name:[UpdateTwitsNotificationIdentifier copy] object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotImageData:) name:[GotImageDataNotificationIdentifier copy] object:nil];
     [self.tableView setTableFooterView:[UIView new]];
+    //чтобы не было некрасивых линий внизу таблицы
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)]];
     [self loadIt:nil];
 }
 
 - (void)tap:(UIGestureRecognizer *)tapGestre {
+    //для того, чтобы на айфоне можно было скрыть клавиатуру
+    //обычно использую TPKeyboardAvoidingView - но здесь я поместил поле ввода в верх экрана, хватит просто рекогнайзера
     [self.view endEditing:YES];
 }
 
@@ -84,6 +89,9 @@ const NSString *GotImageDataNotificationIdentifier  = @"GotImageDataNotification
 }
 
 - (void)reloadTimerTick:(NSTimer *)timer {
+    //такая реализация та   мера мне больше всего нравится. Из-за скролла таблицы может отложить немного обновление данных - но мне кажется, что это не большая проблема.
+    //зато такой подход устойчив к смене времени на девайсе
+    //правда, твиттер и сам проследит, чтобы timestamp не сильно отставал от текущего времени
     if (!self.numberOfTicks) {
         self.numberOfTicks = [self maxNumberOfTicks];
     } else {
@@ -97,6 +105,7 @@ const NSString *GotImageDataNotificationIdentifier  = @"GotImageDataNotification
 }
 
 - (void)updateTwits:(NSNotification *)note {
+    //пришли данные - пора их локально сохранить и обновить табличку
     NSArray *objects = note.object;
     if (objects.count) {
         NSMutableArray *twits = [NSMutableArray array];
@@ -129,7 +138,9 @@ const NSString *GotImageDataNotificationIdentifier  = @"GotImageDataNotification
     NSString * userScreenName = user.screenName;
     NSData *imgData = nil;
     if ([[UPKPreferences sharedPreferences] avatarsEnabled]) {
+        //загрузка данных на самом деле асинхронна - когда данные новые прийдут, прийдет оповещение и я вызову обновление нужных ячеек таблицы
         imgData = [[UPKDAO sharedDAO] dataForUrlString:user.profileImgUrl andNotification:[GotImageDataNotificationIdentifier copy]];
+        //если же данные есть в кеше - то разу их помещу на экран
     }
     [cell prepareViewWithUserScreenName:userScreenName andText:twitText andImgData:imgData];
     return cell;
@@ -138,6 +149,7 @@ const NSString *GotImageDataNotificationIdentifier  = @"GotImageDataNotification
 #pragma mark - gotImageData notification
 
 - (void)gotImageData:(NSNotification *)note {
+    //пришли данные картинки
     if (![[UPKPreferences sharedPreferences] avatarsEnabled]) {
         return;
     }
@@ -160,6 +172,7 @@ const NSString *GotImageDataNotificationIdentifier  = @"GotImageDataNotification
         }
     }
     if (rowsToReload.count) {
+        //эти ячейки связаны с этой картинкой - их пора обновить
         [self.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationAutomatic];
     }
 }

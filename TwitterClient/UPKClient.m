@@ -51,7 +51,7 @@ NSString* const UPKRequestUrlString = @"UPKRequestUrlString";
 - (void)twitListForUserScreenName:(NSString *)screenName withMaxId:(NSString *)maxTwitId andCount:(NSUInteger)count andNotification:(NSString *)notification {
     dispatch_async(_requestQueue, ^{
         NSString *urlString = @"https://api.twitter.com/1.1/statuses/user_timeline.json";
-        NSDictionary *requestParams = @{@"count":@"10",@"screen_name":screenName};
+        NSDictionary *requestParams = @{@"count":[@(count) stringValue], @"screen_name":screenName};
         UPKSingleRequestCapsule *capsule = [[UPKSingleTwitRequestCapsule alloc] initWithUrlString:urlString timeoutInterval:50 requestParams:requestParams notifyOnResponse:notification];
         [_capsules addObject:capsule];
     });
