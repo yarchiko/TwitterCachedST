@@ -40,8 +40,8 @@
 		1ABEA2BE1A842FEA00840E83 /* UPKPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABEA2BC1A842FEA00840E83 /* UPKPreferences.m */; };
 		1AE5F7DF1A8011AF00699394 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5F7DE1A8011AF00699394 /* main.m */; };
 		1AE5F7E21A8011AF00699394 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5F7E11A8011AF00699394 /* AppDelegate.m */; };
-		1AE5F7E51A8011AF00699394 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5F7E41A8011AF00699394 /* FirstViewController.m */; };
-		1AE5F7E81A8011AF00699394 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5F7E71A8011AF00699394 /* SecondViewController.m */; };
+		1AE5F7E51A8011AF00699394 /* TwitsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5F7E41A8011AF00699394 /* TwitsViewController.m */; };
+		1AE5F7E81A8011AF00699394 /* PreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5F7E71A8011AF00699394 /* PreferencesViewController.m */; };
 		1AE5F7EB1A8011AF00699394 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AE5F7E91A8011AF00699394 /* Main.storyboard */; };
 		1AE5F7ED1A8011AF00699394 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AE5F7EC1A8011AF00699394 /* Images.xcassets */; };
 		1AE5F7FC1A8011AF00699394 /* TwitterCachedSTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5F7FB1A8011AF00699394 /* TwitterCachedSTTests.m */; };
@@ -112,10 +112,10 @@
 		1AE5F7DE1A8011AF00699394 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1AE5F7E01A8011AF00699394 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1AE5F7E11A8011AF00699394 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1AE5F7E31A8011AF00699394 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		1AE5F7E41A8011AF00699394 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		1AE5F7E61A8011AF00699394 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		1AE5F7E71A8011AF00699394 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		1AE5F7E31A8011AF00699394 /* TwitsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwitsViewController.h; sourceTree = "<group>"; };
+		1AE5F7E41A8011AF00699394 /* TwitsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwitsViewController.m; sourceTree = "<group>"; };
+		1AE5F7E61A8011AF00699394 /* PreferencesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreferencesViewController.h; sourceTree = "<group>"; };
+		1AE5F7E71A8011AF00699394 /* PreferencesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PreferencesViewController.m; sourceTree = "<group>"; };
 		1AE5F7EA1A8011AF00699394 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1AE5F7EC1A8011AF00699394 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1AE5F7F51A8011AF00699394 /* TwitterCachedSTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwitterCachedSTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -255,10 +255,10 @@
 				1ABEA2B51A841CF800840E83 /* TwitCell */,
 				1AE5F7E01A8011AF00699394 /* AppDelegate.h */,
 				1AE5F7E11A8011AF00699394 /* AppDelegate.m */,
-				1AE5F7E31A8011AF00699394 /* FirstViewController.h */,
-				1AE5F7E41A8011AF00699394 /* FirstViewController.m */,
-				1AE5F7E61A8011AF00699394 /* SecondViewController.h */,
-				1AE5F7E71A8011AF00699394 /* SecondViewController.m */,
+				1AE5F7E31A8011AF00699394 /* TwitsViewController.h */,
+				1AE5F7E41A8011AF00699394 /* TwitsViewController.m */,
+				1AE5F7E61A8011AF00699394 /* PreferencesViewController.h */,
+				1AE5F7E71A8011AF00699394 /* PreferencesViewController.m */,
 				1AE5F7E91A8011AF00699394 /* Main.storyboard */,
 				1AE5F7EC1A8011AF00699394 /* Images.xcassets */,
 				1AE5F7DC1A8011AF00699394 /* Supporting Files */,
@@ -483,12 +483,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1AE5F7E81A8011AF00699394 /* SecondViewController.m in Sources */,
+				1AE5F7E81A8011AF00699394 /* PreferencesViewController.m in Sources */,
 				1AE5F8181A80135700699394 /* FMDatabaseQueue.m in Sources */,
 				1AE5F8261A801A1D00699394 /* UPKUser.m in Sources */,
 				1AE5F82A1A801BE000699394 /* UPKDAO.m in Sources */,
 				1AE5F7E21A8011AF00699394 /* AppDelegate.m in Sources */,
-				1AE5F7E51A8011AF00699394 /* FirstViewController.m in Sources */,
+				1AE5F7E51A8011AF00699394 /* TwitsViewController.m in Sources */,
 				1ABEA2A41A829E0800840E83 /* UPKSingleRequestCapsule.m in Sources */,
 				1ABEA2BD1A842FEA00840E83 /* UPKPreferences.m in Sources */,
 				1AE5F8121A80135700699394 /* FMDatabase.m in Sources */,
