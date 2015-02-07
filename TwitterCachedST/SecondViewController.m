@@ -44,9 +44,7 @@
                                  hideAvatarsView.alpha=1;
                              }
                          } completion:^(BOOL b) {
-                             if (hide) {
-                                 hideAvatarsView.hidden= YES;
-                             }
+                             hideAvatarsView.hidden= hide;
                          }];
 }
 
