@@ -9,6 +9,7 @@
 #import "UPKDAO.h"
 #import "UPKClient.h"
 #import "FMDB.h"
+#import "UPKTwitsAndUsersContainer.h"
 #import "UPKTwit.h"
 #import "UPKUser.h"
 
@@ -104,11 +105,11 @@ NSString* const UPKDataFromDB = @"UPKDataFromDB";
 
 #pragma mark - Twits
 
-- (void)twitListForUserScreenName:(NSString *)screenName withMaxId:(NSString *)maxTwitId andCount:(NSUInteger)count andNotification:(NSString *)notification {
+- (void)twitListForUserScreenName:(NSString *)screenName withMaxId:(NSString *)maxTwitId orSinceId:(NSString *)sinceId andCount:(NSUInteger)count andNotification:(NSString *)notification {
     UPKClient *client = [UPKClient sharedClient];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:notification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processTwits:) name:notification object:nil];
-    [client twitListForUserScreenName:screenName withMaxId:maxTwitId andCount:count andNotification:notification];
+    [client twitListForUserScreenName:screenName withMaxId:maxTwitId orSinceId:sinceId andCount:count andNotification:notification];
     
     //теперь пока данные грузятся получу локальные данные, удовлетворяющие этому же запросу
     __block NSMutableArray *twitsAndUsers = [NSMutableArray arrayWithCapacity:count];
@@ -138,10 +139,12 @@ NSString* const UPKDataFromDB = @"UPKDataFromDB";
                 }
             }
         }];
+        UPKTwitsAndUsersContainer *container = [[UPKTwitsAndUsersContainer alloc] initWithObjectsArray:twitsAndUsers];
+        __weak UPKTwitsAndUsersContainer *weakContainer = container;
         dispatch_async(dispatch_get_main_queue(), ^{
             //да-да, я передаю "наверх" массив из пользователей и твитов. обычно пользователь один (так как timeline)
             //можно было завернуть в объект, содержащий массив твитов и словарь пользователей (этот объект мог бы пригодиться и в контроллере)
-            [[NSNotificationCenter defaultCenter] postNotificationName:notification object:twitsAndUsers userInfo:@{UPKDataFromDB:@(YES)}];
+            [[NSNotificationCenter defaultCenter] postNotificationName:notification object:weakContainer userInfo:@{UPKDataFromDB:@(YES)}];
         });
     });
 }
@@ -153,8 +156,9 @@ NSString* const UPKDataFromDB = @"UPKDataFromDB";
     [[NSNotificationCenter defaultCenter] removeObserver:self name:note.name object:nil];
     //полученные здесь twits нужно будет сохранить (или обновить существующие данные)
     //простейший вариант - прибить те, что были и сохранить новые
-    NSArray *twitsAndUsers = note.object;
+    UPKTwitsAndUsersContainer *container = note.object;
     FMDatabaseQueue *queue = self.fmdbQueue;
+    __weak UPKTwitsAndUsersContainer *weakContainer = container;
     dispatch_async(_dbRequestQueue, ^{
         [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
             BOOL success = [db executeStatements:@"delete from 'users'; delete from 'twits'"];
@@ -162,14 +166,15 @@ NSString* const UPKDataFromDB = @"UPKDataFromDB";
                 *rollback = YES;
                 return;
             }
-            for (id twitOrUser in twitsAndUsers) {
-                if ([twitOrUser isKindOfClass:[UPKTwit class]]) {
-                    UPKTwit *twit = twitOrUser;
-                    success = [db executeUpdate:@"insert into 'twits' (idString, userIdString, text, dateString) values (?, ?, ?, ?)", twit.idString, twit.userIdString, twit.text, twit.dateString];
-                } else if ([twitOrUser isKindOfClass:[UPKUser class]]) {
-                    UPKUser *user = twitOrUser;
-                    success = [db executeUpdate:@"insert into 'users' (idString, screenName, profileImgUrl) values (?,?,?)", user.idString, user.screenName, user.profileImgUrl];
+            for (UPKTwit *twit in weakContainer.twits) {
+                success = [db executeUpdate:@"insert into 'twits' (idString, userIdString, text, dateString) values (?, ?, ?, ?)", twit.idString, twit.userIdString, twit.text, twit.dateString];
+                if (!success) {
+                    *rollback = YES;
+                    return;
                 }
+            }
+            for (UPKUser *user in weakContainer.users) {
+                success = [db executeUpdate:@"insert into 'users' (idString, screenName, profileImgUrl) values (?,?,?)", user.idString, user.screenName, user.profileImgUrl];
                 if (!success) {
                     *rollback = YES;
                     return;

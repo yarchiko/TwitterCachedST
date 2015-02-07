@@ -10,18 +10,19 @@
 #import "UPKDAO.h"
 #import "UPKTwit.h"
 #import "UPKUser.h"
+#import "UPKTwitsAndUsersContainer.h"
 #import "UPKTwitCell.h"
 #import "UPKPreferences.h"
 
-#define SHOW_DATE_STRING 0
+#define UPK_SHOW_DATE_STRING 0
+#define UPK_AUTOUPDATE 1
 
 const NSString *UpdateTwitsNotificationIdentifier   = @"UpdateTwitsNotificationIdentifier";
 const NSString *GotImageDataNotificationIdentifier  = @"GotImageDataNotificationIdentifier";
 
 @interface TwitsViewController () <UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSArray *twits;
-@property (nonatomic, strong) NSDictionary *twitUsersDic;
+@property (nonatomic, strong) UPKTwitsAndUsersContainer *container;
 @property (weak, nonatomic) IBOutlet UILabel *timerIndicator;
 @property (nonatomic, strong) NSTimer *reloadTimer;
 @property (nonatomic, assign) NSUInteger numberOfTicks;
@@ -29,19 +30,6 @@ const NSString *GotImageDataNotificationIdentifier  = @"GotImageDataNotification
 @end
 
 @implementation TwitsViewController
-
-- (NSUInteger)maxNumberOfTicks {
-    //костанта перед умножением на ticksPerSecond - количество секунд
-#if (DEBUG)
-    return 20 * [self ticksPerSecond];
-#endif
-    return 60 * [self ticksPerSecond];
-}
-
-- (NSUInteger)ticksPerSecond {
-    //сколько раз в секунду стоит срабатывать таймеру, чтобы мы наиболее точно отсчитывали время
-    return 2;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -77,13 +65,74 @@ const NSString *GotImageDataNotificationIdentifier  = @"GotImageDataNotification
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - loading initiators
+
 - (IBAction)loadIt:(id)sender {
+#if (UPK_AUTOUPDATE)
     if (!self.reloadTimer) {
         self.reloadTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/[self ticksPerSecond] target:self selector:@selector(reloadTimerTick:) userInfo:nil repeats:YES];
     }
-    NSString *screenNameTextFieldText = [self.screenNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSString *screenName = screenNameTextFieldText.length ? screenNameTextFieldText : @"ksenks";
-    [[UPKDAO sharedDAO] twitListForUserScreenName:screenName withMaxId:nil andCount:20 andNotification:[UpdateTwitsNotificationIdentifier copy]];
+#endif
+    NSString *screenName = [self screenNameForGatheringMoreData:NO];
+    [[UPKDAO sharedDAO] twitListForUserScreenName:screenName withMaxId:nil orSinceId:nil andCount:20 andNotification:[UpdateTwitsNotificationIdentifier copy]];
+}
+
+- (void)loadFreshTwits:(id)sender {
+    NSString *screenName = [self screenNameForGatheringMoreData:YES];
+    //узнаю, какой твит сейчас верхний (мне нужен его idString)
+    UPKTwit *firstTwit = [self.container.twits firstObject];
+    NSString *firstTwitIdString = firstTwit.idString;
+    [[UPKDAO sharedDAO] twitListForUserScreenName:screenName withMaxId:nil orSinceId:firstTwitIdString andCount:20 andNotification:[UpdateTwitsNotificationIdentifier copy]];
+}
+
+- (void)loadOldTwits:(id)sender {
+    NSString *screenName = [self screenNameForGatheringMoreData:YES];
+    //узнаю, какой твит сейчас верхний (мне нужен его idString)
+    UPKTwit *lastTwit = [self.container.twits lastObject];
+    NSString *lastTwitIdString = lastTwit.idString;
+    [[UPKDAO sharedDAO] twitListForUserScreenName:screenName withMaxId:lastTwitIdString orSinceId:nil andCount:20 andNotification:[UpdateTwitsNotificationIdentifier copy]];
+}
+
+- (NSString *)screenNameForGatheringMoreData:(BOOL)gatherMoreData {
+    NSString *screenNameToReturn = nil;
+    if (!gatherMoreData) {
+        //если мы хотим грузить кого-то нового, то мы можем начать грузить того, чей ник введен
+        NSString *screenNameTextFieldText = [self.screenNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        screenNameToReturn = screenNameTextFieldText;
+    }
+    if (!screenNameToReturn.length) {
+        //если мы хотим еще данных по этому пользователю - то стоит искать имя пользователя в текущем словаре пользователей
+        UPKUser *user = [self.container.users.allValues firstObject];
+        screenNameToReturn = user.screenName;
+    }
+    if (!screenNameToReturn.length) {
+        screenNameToReturn = @"ksenks";     //значение по умолчанию для загрузки хоть кого-нибудь
+    }
+    return screenNameToReturn;
+}
+
+#pragma mark - loading twits finished method
+
+- (void)updateTwits:(NSNotification *)note {
+    //пришли данные - пора их локально сохранить и обновить табличку
+    UPKTwitsAndUsersContainer *container = note.object;
+    self.container = self.container ? [self.container containerMergedWithContainer:container] : container;
+    [self.tableView reloadData];
+}
+
+#pragma mark - timing methods
+
+- (NSUInteger)maxNumberOfTicks {
+    //костанта перед умножением на ticksPerSecond - количество секунд
+#if (DEBUG)
+    return 20 * [self ticksPerSecond];
+#endif
+    return 60 * [self ticksPerSecond];
+}
+
+- (NSUInteger)ticksPerSecond {
+    //сколько раз в секунду стоит срабатывать таймеру, чтобы мы наиболее точно отсчитывали время
+    return 2;
 }
 
 - (void)updateTimerIndicatorValue {
@@ -106,37 +155,18 @@ const NSString *GotImageDataNotificationIdentifier  = @"GotImageDataNotification
     [self updateTimerIndicatorValue];
 }
 
-- (void)updateTwits:(NSNotification *)note {
-    //пришли данные - пора их локально сохранить и обновить табличку
-    NSArray *objects = note.object;
-    if (objects.count) {
-        NSMutableArray *twits = [NSMutableArray array];
-        NSMutableDictionary *twitUsers = [NSMutableDictionary dictionary];
-        for (id obj in objects) {
-            if ([obj isKindOfClass:[UPKTwit class]]) {
-                [twits addObject:obj];
-            } else if ([obj isKindOfClass:[UPKUser class]]) {
-                [twitUsers setObject:obj forKey:[obj valueForKey:@"idString"]];
-            }
-        }
-        self.twitUsersDic = twitUsers;
-        self.twits = twits;
-        [self.tableView reloadData];
-    }
-}
-
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.twits.count;
+    return self.container.twits.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"twitCell";
     UPKTwitCell *cell = (UPKTwitCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    UPKTwit *twit = [self.twits objectAtIndex:indexPath.row];
+    UPKTwit *twit = [self.container.twits objectAtIndex:indexPath.row];
     NSString *twitText = twit.text;
-    UPKUser *user = [self.twitUsersDic objectForKey:twit.userIdString];
+    UPKUser *user = [self.container.users objectForKey:twit.userIdString];
     NSString * userScreenName = user.screenName;
     NSData *imgData = nil;
     if ([[UPKPreferences sharedPreferences] avatarsEnabled]) {
@@ -144,7 +174,7 @@ const NSString *GotImageDataNotificationIdentifier  = @"GotImageDataNotification
         imgData = [[UPKDAO sharedDAO] dataForUrlString:user.profileImgUrl andNotification:[GotImageDataNotificationIdentifier copy]];
         //если же данные есть в кеше - то разу их помещу на экран
     }
-#if (SHOW_DATE_STRING)
+#if (UPK_SHOW_DATE_STRING)
     NSString *dateString = twit.dateString;
     if (dateString) {
         userScreenName = [NSString stringWithFormat:@"%@ %@", userScreenName, dateString];
@@ -162,19 +192,18 @@ const NSString *GotImageDataNotificationIdentifier  = @"GotImageDataNotification
         return;
     }
     NSString *urlString = note.object;
-    NSDictionary *users = [self.twitUsersDic copy];
+    UPKTwitsAndUsersContainer *currentContainer = [self.container copy];
     NSMutableSet *userIds = [NSMutableSet set];
-    for (NSString *idString in users) {
-        UPKUser *user = [users objectForKey:idString];
+    for (NSString *idString in currentContainer.users) {
+        UPKUser *user = [currentContainer.users objectForKey:idString];
         if ([user.profileImgUrl isEqualToString:urlString]) {
             [userIds addObject:idString];
         }
     }
-    NSArray *twits = [self.twits copy];
-    NSArray *twitsTouchedByThisImg = [twits filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"userIdString in %@", userIds]];
+    NSArray *twitsTouchedByThisImg = [currentContainer.twits filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"userIdString in %@", userIds]];
     NSMutableArray *rowsToReload = [NSMutableArray array];
     for (UPKTwit *twit in twitsTouchedByThisImg) {
-        NSUInteger index = [twits indexOfObject:twit];
+        NSUInteger index = [currentContainer.twits indexOfObject:twit];
         if (index != NSNotFound) {
             [rowsToReload addObject:[NSIndexPath indexPathForRow:index inSection:0]];
         }

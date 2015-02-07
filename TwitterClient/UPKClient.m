@@ -10,8 +10,7 @@
 #import "UPKDAO.h"
 #import "UPKSingleRequestCapsule.h"
 #import "UPKSingleTwitRequestCapsule.h"
-#import "UPKTwit.h"
-#import "UPKUser.h"
+#import "UPKTwitsAndUsersContainer.h"
 #include <stdlib.h>
 
 NSString* const UPKRequestUrlString = @"UPKRequestUrlString";
@@ -48,7 +47,7 @@ NSString* const UPKRequestUrlString = @"UPKRequestUrlString";
     return nil;
 }
 
-- (void)twitListForUserScreenName:(NSString *)screenName withMaxId:(NSString *)maxTwitId andCount:(NSUInteger)count andNotification:(NSString *)notification {
+- (void)twitListForUserScreenName:(NSString *)screenName withMaxId:(NSString *)maxTwitId orSinceId:(NSString *)sinceId andCount:(NSUInteger)count andNotification:(NSString *)notification {
     dispatch_async(_requestQueue, ^{
         NSString *urlString = @"https://api.twitter.com/1.1/statuses/user_timeline.json";
         NSDictionary *requestParams = @{@"count":[@(count) stringValue], @"screen_name":screenName};
@@ -70,12 +69,11 @@ NSString* const UPKRequestUrlString = @"UPKRequestUrlString";
     });
     if (finished) {
         if ([capsule isKindOfClass:[UPKSingleTwitRequestCapsule class]]) {
-            id obj = responseData ? [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error] : nil;
+            NSArray *objects = responseData ? [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error] : nil;
 #if (DEBUG)
-            NSLog(@"Got: %@", obj);
+            NSLog(@"Got: %@", objects);
 #endif
-            if ([obj isKindOfClass:[NSArray class]]) {
-                
+            if ([objects isKindOfClass:[NSArray class]]) {
 #if (USE_DUMP_RESPONSE)
             } else {
                 NSString *filePath = [[NSBundle mainBundle] pathForResource:@"TestResponse" ofType:@"json"];
@@ -86,24 +84,8 @@ NSString* const UPKRequestUrlString = @"UPKRequestUrlString";
                 responseData = nil;
 #endif
             }
-            NSMutableArray *twits = [NSMutableArray array];
-            NSMutableDictionary *users = [NSMutableDictionary dictionary];
-            for (NSDictionary *twitObj in obj) {
-                if (![twitObj isKindOfClass:[NSDictionary class]]) {
-                    continue;
-                }
-                NSArray *twitAndUser = [UPKTwit twitAndUserAfterProcessingObject:twitObj];
-                if (twitAndUser.count >= 2) {
-                    UPKTwit *twit = [twitAndUser firstObject];
-                    UPKUser *user = twitAndUser[1];
-                    [twits addObject:twit];
-                    [users setObject:user forKey:user.idString];
-                }
-            }
-            NSMutableArray *objects = [NSMutableArray arrayWithArray:twits];
-            [objects addObjectsFromArray:[users allValues]];
-            //вот снова этот кривой массив с пользователями и твитами. Вероятно, всё же стоило сделать объект, в котром будет сразу массив твитов и словарь пользователей
-            [[NSNotificationCenter defaultCenter] postNotificationName:notification object:objects userInfo:@{UPKRequestUrlString:capsule.urlString}];
+            UPKTwitsAndUsersContainer *container = [[UPKTwitsAndUsersContainer alloc] initWithRemoteObjectsArray:objects];
+            [[NSNotificationCenter defaultCenter] postNotificationName:notification object:container userInfo:@{UPKRequestUrlString:capsule.urlString}];
         } else if (responseData) {
             [[UPKDAO sharedDAO] finishedLoadingUrlString:capsule.urlString withData:responseData andNotification:notification];
         }

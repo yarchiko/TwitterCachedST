@@ -11,7 +11,7 @@
 
 @protocol UPKTwitAsyncProvider <NSObject>
 
-- (void)twitListForUserScreenName:(NSString *)userScreenName withMaxId:(NSString *)maxTwitId andCount:(NSUInteger)count andNotification:(NSString *)notification;
+- (void)twitListForUserScreenName:(NSString *)userScreenName withMaxId:(NSString *)maxTwitId orSinceId:(NSString *)sinceId andCount:(NSUInteger)count andNotification:(NSString *)notification;
 
 //- (void)twitListForSearch:(NSString *)search  withMaxId:(NSString *)maxTwitId andCount:(NSUInteger)count andNotification:(NSString *)notification;
 
