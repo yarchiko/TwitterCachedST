@@ -20,7 +20,7 @@
     self = [super init];
     if (self) {
         _notification = notification;
-        
+        //когда я узнал, что не нужно делать OAuth, я честно думал, что и такой вот галиматьи не потребуется
         NSString *oauth_nonce = [self oauth_nonce];
         NSString *oauth_timestamp = [@([@([[NSDate date] timeIntervalSince1970]) integerValue]) stringValue];
         NSString *oauth_consumer_key = UPK_TWITTER_OAUTH_CONSUMER_KEY;
@@ -39,7 +39,8 @@
         NSArray *allKeys = [[fullDictionary allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
         
         NSMutableString *stringForHashing = [@"GET&" mutableCopy];
-        [stringForHashing appendString:[self URLEncodedString_ch:urlString]];
+        //в этой строке я соберу по правилам твиттера данные своего запроса
+        [stringForHashing appendString:[self percentEncode:urlString]];
         [stringForHashing appendString:@"&"];
         BOOL first = YES;
         for (NSString *key in allKeys) {
@@ -48,15 +49,15 @@
             if (!first) {
                 appendPart = [@"&" stringByAppendingString:appendPart];
             }
-            [stringForHashing appendString:[self URLEncodedString_ch:appendPart]];
+            [stringForHashing appendString:[self percentEncode:appendPart]];
             first = NO;
         }
-        
         NSString *signature = [self signatureForString:stringForHashing];
         [oauthDictionary setObject:signature forKey:@"oauth_signature"];
         
         NSArray *allOauthKeys = [[oauthDictionary allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
         NSMutableString *oauthString = [@"OAuth " mutableCopy];
+        //в этой строке я подготовлю хедер
         first = YES;
         for (NSString *key in allOauthKeys) {
             NSString *value = [oauthDictionary objectForKey:key];
@@ -72,6 +73,7 @@
         if (encodedResponseParams.length) {
             urlString = [NSString stringWithFormat:@"%@?%@", urlString, encodedResponseParams];
         }
+        //параметры get-запроса должны быть только из продиктованыых пользователем (данные для авторизации вызывающий метод не передавал)
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:timeoutInterval];
         
         [request addValue:oauthString forHTTPHeaderField:@"Authorization"];
@@ -85,15 +87,14 @@
     return self;
 }
 
-- (NSString *) URLEncodedString_ch:(NSString *)string {
+- (NSString *) percentEncode:(NSString *)string {
+    //стандартный способ не подходил - пришлось кастомизировать
     NSMutableString * output = [NSMutableString string];
     const unsigned char * source = (const unsigned char *)[string UTF8String];
     int sourceLen = strlen((const char *)source);
     for (int i = 0; i < sourceLen; ++i) {
         const unsigned char thisChar = source[i];
-        /*if (thisChar == ' '){
-            [output appendString:@"+"];
-        } else */if (thisChar == '.' || thisChar == '-' || thisChar == '_' || /*thisChar == '~' ||*/
+        if (thisChar == '.' || thisChar == '-' || thisChar == '_' ||
                    (thisChar >= 'a' && thisChar <= 'z') ||
                    (thisChar >= 'A' && thisChar <= 'Z') ||
                    (thisChar >= '0' && thisChar <= '9')) {
@@ -106,7 +107,8 @@
 }
 
 - (NSString *)oauth_nonce {
-    NSUInteger length = 32;
+    //вот такой быстрый способ сгенерить строку из символов в разны регистрах и из цифр. Важно мне здесь, что эта строка при примерении percentEncode не должна меняться
+    NSUInteger length = 32; //константа от твиттера
     static NSString *alphaNumerics = @"abcdefjhijklmnopqrstuvwABCDEFJHIJKLMNOPQRSTUVW0123456789";
     static NSUInteger anLength = 0;
     if (!anLength) {
@@ -122,21 +124,13 @@
     return [mstr copy];
 }
 
--(NSData*)createRandomBytes:(NSUInteger)length {
-    NSMutableData* theData = [NSMutableData dataWithCapacity:length];
-    for( unsigned int i = 0 ; i < length/4 ; ++i ) {
-        u_int32_t randomBits = arc4random();
-        [theData appendBytes:(void*)&randomBits length:4];
-    }
-    return theData;
-}
-
 - (NSString *)encodeResponseParams:(NSDictionary*)dictionary {
+    //вот в таком формате я приткну параметры запроса к урлу
     NSMutableArray *parts = [[NSMutableArray alloc] init];
     NSArray *allKeys = [dictionary.allKeys sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     for (NSString *key in allKeys) {
-        NSString *encodedValue = [self URLEncodedString_ch:[dictionary objectForKey:key]];
-        NSString *encodedKey = [self URLEncodedString_ch:key];
+        NSString *encodedValue = [self percentEncode:[dictionary objectForKey:key]];
+        NSString *encodedKey = [self percentEncode:key];
         NSString *part = [NSString stringWithFormat: @"%@=%@", encodedKey, encodedValue];
         [parts addObject:part];
     }
@@ -147,8 +141,9 @@
 #pragma mark - HMAC-SHA1
 
 - (NSString *)signatureForString:(NSString *)string {
+    //получаем подпись для заранее подготовленной строки
     NSString *signature =[self hmacsha1:string secret:UPK_HMAC_SECRET];
-    return [self URLEncodedString_ch:signature];
+    return [self percentEncode:signature];
 }
 
 - (NSString *)hmacsha1:(NSString *)data secret:(NSString *)key {
