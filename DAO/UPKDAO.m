@@ -18,6 +18,8 @@ NSString* const UPKDataFromDB = @"UPKDataFromDB";
     dispatch_queue_t _dbRequestQueue;
 }
 @property (nonatomic, strong) FMDatabaseQueue *fmdbQueue;
+
+//кеш картинок (на самом деле DAO не важно, картинки это или другие данные, получаемые по строке)
 @property (nonatomic, strong) NSMutableDictionary *dataDictionary;
 @end
 
@@ -36,6 +38,7 @@ NSString* const UPKDataFromDB = @"UPKDataFromDB";
 #pragma mark - DataForUrlStirng
 
 - (NSData *)dataForUrlString:(NSString *)urlString andNotification:(NSString *)notification {
+    //этот метод дергается в главном потоке - я считаю, что метод отработает достаточно быстро
     NSData *data = [self.dataDictionary objectForKey:urlString];
     if (!data.length) {
         if (data) {
@@ -43,8 +46,9 @@ NSString* const UPKDataFromDB = @"UPKDataFromDB";
         } else {
             //сделаю запрос к серверу
             UPKClient *client = [UPKClient sharedClient];
+            //клиент не кеширует данные - но если бы кешировал, можно было бы использовать возвращаемое значение и не дергать БД
             [client dataForUrlString:urlString andNotification:notification];
-            //поищу данные в БД
+            //поищу данные в БД (асинхронно)
             FMDatabaseQueue *queue = self.fmdbQueue;
             dispatch_async(_dbRequestQueue, ^{
                 [queue inDatabase:^(FMDatabase *db) {
@@ -52,9 +56,12 @@ NSString* const UPKDataFromDB = @"UPKDataFromDB";
                     FMResultSet *rs =[db executeQuery:@"select * from data where urlString in (?)", urlString];
                     while ([rs next]) {
                         NSData *data = [rs dataForColumn:@"data"];
+                        //предполагаем, что в БД мы не храним пустую data
                         dispatch_async(dispatch_get_main_queue(), ^{
+                            //устанавливаем найденное значение в наш кеш, чтобы при следующем обращении уже не лезть в БД
                             [self setData:data forUrlString:urlString];
                             [[NSNotificationCenter defaultCenter] postNotificationName:notification object:urlString userInfo:@{UPKDataFromDB:@(YES)}];
+                            //да-да, при возвращении данных из БД запрос на сервер всё равно не прерывается - даем шанс обновиться локальным данным (картинка могла поменяться, а урл - остаться прежним)
                         });
                         break;
                     }
@@ -62,6 +69,7 @@ NSString* const UPKDataFromDB = @"UPKDataFromDB";
             });
         }
     } else {
+        //есть в кеше - сразу вернем
         return data;
     }
     return nil;
@@ -69,14 +77,16 @@ NSString* const UPKDataFromDB = @"UPKDataFromDB";
 
 - (void)setData:(NSData *)data forUrlString:(NSString *)urlString {
     [self.dataDictionary setObject:data forKey:urlString];
-    //чтобы не было повторных запросов
+    //чтобы не было повторных запросов на сервер/в бд - кешируем данные
 }
 
 - (void)finishedLoadingUrlString:(NSString *)urlString withData:(NSData *)data andNotification:(NSString *)notification {
+    //данные картинки уже закешированы, вернутся в любое время по требованию приложения - самое время сохранить в БД полученные данные
     if (data && urlString) {
         [self.dataDictionary setObject:data forKey:urlString];
         FMDatabaseQueue *queue = self.fmdbQueue;
         dispatch_async(_dbRequestQueue, ^{
+            //решил не заморачиватся с IF EXIST - просто удаляю запись, елси была - и создаю новую с новыми данными
             [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
                 BOOL success = [db executeUpdate:@"delete from 'data' where urlString=(?)", urlString];
                 if (success) {
@@ -128,6 +138,8 @@ NSString* const UPKDataFromDB = @"UPKDataFromDB";
             }
         }];
         dispatch_async(dispatch_get_main_queue(), ^{
+            //да-да, я передаю "наверх" массив из пользователей и твитов. обычно пользователь один (так как timeline)
+            //можно было завернуть в объект, содержащий массив твитов и словарь пользователей (этот объект мог бы пригодиться и в контроллере)
             [[NSNotificationCenter defaultCenter] postNotificationName:notification object:twitsAndUsers userInfo:@{UPKDataFromDB:@(YES)}];
         });
     });

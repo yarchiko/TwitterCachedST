@@ -18,6 +18,7 @@ NSString* const UPKRequestUrlString = @"UPKRequestUrlString";
 
 @interface UPKClient () {
     dispatch_queue_t _requestQueue;
+    //капсулы - это запросы. Обычно я бы использовал AFNetworking с их операциями, но здесь я сделал пару своих странных классов, чтобы не тянуть мощный фреймворк
     NSMutableArray *_capsules;
 }
 @property (nonatomic, strong) NSString *authToken;
@@ -32,6 +33,7 @@ NSString* const UPKRequestUrlString = @"UPKRequestUrlString";
         if (__client) {
             __client->_requestQueue = dispatch_queue_create("UPK.Client.Request.Queue", DISPATCH_QUEUE_SERIAL);
             __client->_capsules = [NSMutableArray array];
+            //клиент хранит капсулы и следаит сам за тем, когда им пора очищаться
             [[NSNotificationCenter defaultCenter] addObserver:__client selector:@selector(removeCapsule:) name:UPKSingleRequestCapsuleFinishedWorking object:nil];
         }
     });
@@ -48,7 +50,7 @@ NSString* const UPKRequestUrlString = @"UPKRequestUrlString";
 
 - (void)twitListForUserScreenName:(NSString *)screenName withMaxId:(NSString *)maxTwitId andCount:(NSUInteger)count andNotification:(NSString *)notification {
     dispatch_async(_requestQueue, ^{
-        NSString *urlString = @"https://api.twitter.com/1.1/statuses/user_timeline.json";//@"http://requestb.in/nnsd18nn";
+        NSString *urlString = @"https://api.twitter.com/1.1/statuses/user_timeline.json";
         NSDictionary *requestParams = @{@"count":@"10",@"screen_name":screenName};
         UPKSingleRequestCapsule *capsule = [[UPKSingleTwitRequestCapsule alloc] initWithUrlString:urlString timeoutInterval:50 requestParams:requestParams notifyOnResponse:notification];
         [_capsules addObject:capsule];
@@ -100,6 +102,7 @@ NSString* const UPKRequestUrlString = @"UPKRequestUrlString";
             }
             NSMutableArray *objects = [NSMutableArray arrayWithArray:twits];
             [objects addObjectsFromArray:[users allValues]];
+            //вот снова этот кривой массив с пользователями и твитами. Вероятно, всё же стоило сделать объект, в котром будет сразу массив твитов и словарь пользователей
             [[NSNotificationCenter defaultCenter] postNotificationName:notification object:objects userInfo:@{UPKRequestUrlString:capsule.urlString}];
         } else if (responseData) {
             [[UPKDAO sharedDAO] finishedLoadingUrlString:capsule.urlString withData:responseData andNotification:notification];

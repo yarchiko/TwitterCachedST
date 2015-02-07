@@ -11,9 +11,10 @@
 
 @protocol UPKTwitAsyncProvider <NSObject>
 
-//- (void)twitListForUserId:(NSString *)userId withMaxId:(NSString *)maxTwitId andCount:(NSUInteger)count andNotification:(NSString *)notification;
 - (void)twitListForUserScreenName:(NSString *)userScreenName withMaxId:(NSString *)maxTwitId andCount:(NSUInteger)count andNotification:(NSString *)notification;
+
 //- (void)twitListForSearch:(NSString *)search  withMaxId:(NSString *)maxTwitId andCount:(NSUInteger)count andNotification:(NSString *)notification;
+
 - (NSData *)dataForUrlString:(NSString *)urlString andNotification:(NSString *)notification;
 //возвращается NSData, если она уже в памяти - если не было, а теперь появилась - можно перезапросить
 
