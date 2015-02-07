@@ -70,9 +70,14 @@
 - (instancetype)initWithObjectsArray:(NSArray *)objects {
     NSMutableArray *twits = [NSMutableArray array];
     NSMutableDictionary *users = [NSMutableDictionary dictionary];
+    NSMutableSet *twitsIdsSet = [NSMutableSet set];
     for (id obj in objects) {
         if ([obj isKindOfClass:[UPKTwit class]]) {
-            [twits addObject:obj];
+            UPKTwit *twit = obj;
+            if (![twitsIdsSet containsObject:twit.idString]) {
+                [twits addObject:twit];
+                [twitsIdsSet addObject:twit.idString];
+            }
         } else if ([obj isKindOfClass:[UPKUser class]]) {
             UPKUser *user = obj;
             [users setObject:user forKey:user.idString];
