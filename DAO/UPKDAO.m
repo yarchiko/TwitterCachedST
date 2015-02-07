@@ -117,7 +117,7 @@ NSString* const UPKDataFromDB = @"UPKDataFromDB";
     dispatch_async(_dbRequestQueue, ^{
         [queue inDatabase:^(FMDatabase *db) {
             //пока простейшая реализация - вернуть все, что было в БД
-            FMResultSet *rs =[db executeQuery:@"select * from twits"];
+            FMResultSet *rs =[db executeQuery:@"select * from twits limit (?)", @(count)];
             NSMutableSet *userIdsInUse = [NSMutableSet set];
             while ([rs next]) {
                 UPKTwit *twit = [UPKTwit new];
