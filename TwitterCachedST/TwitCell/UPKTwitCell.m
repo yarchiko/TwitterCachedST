@@ -36,7 +36,7 @@
     [self.layer removeAllAnimations];
 }
 
-- (void)prepareViewWithUserScreenName:(NSString *)screenName andText:(NSString *)text andImgData:(NSData *)imgData {
+- (void)prepareViewWithUserScreenName:(NSString *)screenName andText:(NSString *)text andImgData:(NSData *)imgData animated:(BOOL)animated {
     
     if (imgData) {
         self.twitImgView.image = [UIImage imageWithData:imgData];

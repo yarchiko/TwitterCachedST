@@ -168,7 +168,7 @@ const CGFloat rowDefHeight = 60.0f;
     return self.container.twits.count;
 }
 
-- (void)configureCell:(UPKTwitCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)configureCell:(UPKTwitCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated {
     UPKTwit *twit = [self.container.twits objectAtIndex:indexPath.row];
     NSString *twitText = twit.text;
     UPKUser *user = [self.container.users objectForKey:twit.userIdString];
@@ -185,12 +185,12 @@ const CGFloat rowDefHeight = 60.0f;
         userScreenName = [NSString stringWithFormat:@"%@ %@", userScreenName, dateString];
     }
 #endif
-    [cell prepareViewWithUserScreenName:userScreenName andText:twitText andImgData:imgData];
+    [cell prepareViewWithUserScreenName:userScreenName andText:twitText andImgData:imgData animated:animated];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UPKTwitCell *cell = (UPKTwitCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    [self configureCell:cell forRowAtIndexPath:indexPath];
+    [self configureCell:cell forRowAtIndexPath:indexPath animated:YES];
     
     return cell;
     
@@ -211,10 +211,10 @@ const CGFloat rowDefHeight = 60.0f;
     // Issue With Device Orientation Changes (too big row heights)
     // The fix is to first ensure the width of the prototype cell is set to width of the table view when calculating the row height.
     // all this is for cell dimensions calculations, this cells will never be
-    [self configureCell:self.prototypeCell forRowAtIndexPath:indexPath];
+    [self configureCell:self.prototypeCell forRowAtIndexPath:indexPath animated:NO];
     self.prototypeCell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableView.bounds), CGRectGetHeight(self.prototypeCell.bounds));
     
-    [self configureCell:self.prototypeCell forRowAtIndexPath:indexPath];
+    [self configureCell:self.prototypeCell forRowAtIndexPath:indexPath animated:NO];
     [self.prototypeCell layoutIfNeeded];
     
     CGSize size = [self.prototypeCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];

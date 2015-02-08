@@ -10,6 +10,6 @@
 
 @interface UPKTwitCell : UITableViewCell
 
-- (void)prepareViewWithUserScreenName:(NSString *)screenName andText:(NSString *)text andImgData:(NSData *)imgData;
+- (void)prepareViewWithUserScreenName:(NSString *)screenName andText:(NSString *)text andImgData:(NSData *)imgData animated:(BOOL)animated;
 
 @end

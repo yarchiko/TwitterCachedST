@@ -10,7 +10,7 @@
 #import "UPKTwitAsyncProvider.h"
 
 #ifndef USE_DUMP_RESPONSE
-    #define USE_DUMP_RESPONSE 0
+    #define USE_DUMP_RESPONSE 1
 #endif
 
 extern NSString* const UPKRequestUrlString;
