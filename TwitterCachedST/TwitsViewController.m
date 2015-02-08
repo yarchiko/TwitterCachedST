@@ -29,7 +29,6 @@ static NSString *const cellIdentifier = @"twitCell";
 @property (nonatomic, strong) NSTimer *reloadTimer;
 @property (nonatomic, assign) NSUInteger numberOfTicks;
 @property (weak, nonatomic) IBOutlet UITextField *screenNameTextField;
-
 @property (nonatomic, strong) UPKTwitCell *prototypeCell;
 @end
 
@@ -171,7 +170,7 @@ static NSString *const cellIdentifier = @"twitCell";
     UPKUser *user = [self.container.users objectForKey:twit.userIdString];
     NSString * userScreenName = user.screenName;
     NSData *imgData = nil;
-    if ([[UPKPreferences sharedPreferences] avatarsEnabled]) {
+    if ([[UPKPreferences sharedPreferences] avatarsEnabled] && animated) {
         //загрузка данных на самом деле асинхронна - когда данные новые прийдут, прийдет оповещение и я вызову обновление нужных ячеек таблицы
         imgData = [[UPKDAO sharedDAO] dataForUrlString:user.profileImgUrl andNotification:[GotImageDataNotificationIdentifier copy]];
         //если же данные есть в кеше - то разу их помещу на экран
