@@ -78,7 +78,7 @@ NSString* const UPKRequestUrlString = @"UPKRequestUrlString";
             } else {
                 NSString *filePath = [[NSBundle mainBundle] pathForResource:@"TestResponse" ofType:@"json"];
                 responseData = [NSData dataWithContentsOfFile:filePath];
-                obj = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:&error];
+                objects = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:&error];
 #else 
             } else {
                 responseData = nil;
