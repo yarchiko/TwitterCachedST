@@ -22,9 +22,6 @@ const NSString *GotImageDataNotificationIdentifier  = @"GotImageDataNotification
 
 static NSString *const cellIdentifier = @"twitCell";
 
-// значение высоты ячейки по умолчанию
-const CGFloat rowDefHeight = 60.0f;
-
 @interface TwitsViewController () <UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UPKTwitsAndUsersContainer *container;
@@ -208,9 +205,7 @@ const CGFloat rowDefHeight = 60.0f;
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Issue With Device Orientation Changes (too big row heights)
-    // The fix is to first ensure the width of the prototype cell is set to width of the table view when calculating the row height.
-    // all this is for cell dimensions calculations, this cells will never be
+    //https://github.com/smileyborg/TableViewCellWithAutoLayout/blob/master/TableViewCellWithAutoLayout/TableViewController/RJTableViewController.m#L186
     [self configureCell:self.prototypeCell forRowAtIndexPath:indexPath animated:NO];
     self.prototypeCell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableView.bounds), CGRectGetHeight(self.prototypeCell.bounds));
     
@@ -218,10 +213,6 @@ const CGFloat rowDefHeight = 60.0f;
     [self.prototypeCell layoutIfNeeded];
     
     CGSize size = [self.prototypeCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-    
-    if (size.height < rowDefHeight) {
-        size.height = rowDefHeight - 1.0f;
-    }
     
     return size.height+1;
 }
