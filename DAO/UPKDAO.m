@@ -173,7 +173,8 @@ NSString* const UPKDataFromDB = @"UPKDataFromDB";
                     return;
                 }
             }
-            for (UPKUser *user in weakContainer.users) {
+            for (NSString *userIdString in weakContainer.users) {
+                UPKUser *user = [weakContainer.users objectForKey:userIdString];
                 success = [db executeUpdate:@"insert into 'users' (idString, screenName, profileImgUrl) values (?,?,?)", user.idString, user.screenName, user.profileImgUrl];
                 if (!success) {
                     *rollback = YES;
