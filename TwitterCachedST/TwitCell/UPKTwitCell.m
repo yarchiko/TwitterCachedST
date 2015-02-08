@@ -14,9 +14,22 @@
 @property (weak, nonatomic) IBOutlet UILabel *twitUserScreenName;
 @property (weak, nonatomic) IBOutlet UILabel *twitText;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageHeight;
 @end
 
 @implementation UPKTwitCell
+
+// если не написать это, то автолейаут не пытается получать размер внутреннего contentView и обновлять свой размер исходя из него
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    [self.contentView layoutIfNeeded];
+    self.twitText.preferredMaxLayoutWidth = CGRectGetWidth(self.twitText.frame);
+
+}
+
+- (CGFloat)imgSide {
+    return 60.0;
+}
 
 - (void)prepareForReuse {
     [self setNeedsUpdateConstraints];
@@ -24,22 +37,28 @@
 }
 
 - (void)prepareViewWithUserScreenName:(NSString *)screenName andText:(NSString *)text andImgData:(NSData *)imgData {
+    
     if (imgData) {
         self.twitImgView.image = [UIImage imageWithData:imgData];
     }
+    
     BOOL showAvatar = (imgData != nil) && [UPKPreferences sharedPreferences].avatarsEnabled;
-    self.imageWidth.constant = showAvatar ? self.twitImgView.frame.size.height : 0;
+    
+    self.imageWidth.constant = showAvatar ? self.imgSide : 0;
+    self.imageHeight.constant = self.imageWidth.constant;
     if (showAvatar) {
         __weak UPKTwitCell *weakSelf = self;
         [UIView animateWithDuration:0.01 animations:^{
             [weakSelf layoutIfNeeded];
         } completion:^(BOOL finished) {
-            weakSelf.imageWidth.constant = showAvatar ? weakSelf.twitImgView.frame.size.height : 0;
+            weakSelf.imageWidth.constant = showAvatar ? weakSelf.imgSide : 0;
+            weakSelf.imageHeight.constant = weakSelf.imageWidth.constant;
             [weakSelf layoutIfNeeded];
         }];
     } else {
         [self layoutIfNeeded];
     }
+    
     self.twitUserScreenName.text = screenName;
     self.twitText.text = text;
 }

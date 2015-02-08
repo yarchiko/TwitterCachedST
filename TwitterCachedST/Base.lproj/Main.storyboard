@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
@@ -28,84 +29,12 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="119" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Fhx-or-ZGd">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="129" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Fhx-or-ZGd">
                                 <rect key="frame" x="16" y="91" width="568" height="452"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="twitCell" rowHeight="120" id="MuH-AY-stN" customClass="UPKTwitCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MuH-AY-stN" id="f5R-ZS-Lkt">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ScreenName" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="1y2-Ao-QO8">
-                                                    <rect key="frame" x="105" y="8" width="455" height="41"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" priority="999" constant="21" id="5H7-kz-xBY">
-                                                            <variation key="widthClass=compact" constant="15"/>
-                                                        </constraint>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="7qh-65-LDX">
-                                                    <rect key="frame" x="11" y="57" width="557" height="55"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="55" id="ina-TK-ilD">
-                                                            <variation key="widthClass=compact" constant="104"/>
-                                                        </constraint>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1bR-Ya-Lif">
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="94.5" id="Gxg-c2-2hg">
-                                                            <variation key="widthClass=compact" constant="52"/>
-                                                        </constraint>
-                                                        <constraint firstAttribute="width" id="pzd-2A-Vs3">
-                                                            <variation key="widthClass=compact" constant="0.0"/>
-                                                        </constraint>
-                                                    </constraints>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="1y2-Ao-QO8" secondAttribute="trailing" constant="8" id="4c7-s0-3dh">
-                                                    <variation key="widthClass=compact" constant="0.0"/>
-                                                </constraint>
-                                                <constraint firstAttribute="bottom" secondItem="7qh-65-LDX" secondAttribute="bottom" constant="7.5" id="4s2-ok-Wai">
-                                                    <variation key="widthClass=compact" constant="0.0"/>
-                                                </constraint>
-                                                <constraint firstItem="7qh-65-LDX" firstAttribute="top" secondItem="1y2-Ao-QO8" secondAttribute="bottom" constant="8" id="BZZ-U7-bAT">
-                                                    <variation key="widthClass=compact" constant="-2"/>
-                                                </constraint>
-                                                <constraint firstItem="7qh-65-LDX" firstAttribute="leading" secondItem="1bR-Ya-Lif" secondAttribute="trailing" constant="8" id="JqM-xG-wNO"/>
-                                                <constraint firstItem="1y2-Ao-QO8" firstAttribute="top" secondItem="f5R-ZS-Lkt" secondAttribute="top" constant="8" id="K1p-EW-xBJ">
-                                                    <variation key="widthClass=compact" constant="3"/>
-                                                </constraint>
-                                                <constraint firstItem="1y2-Ao-QO8" firstAttribute="leading" secondItem="f5R-ZS-Lkt" secondAttribute="leading" constant="105" id="ZEH-bs-Vac">
-                                                    <variation key="widthClass=compact" constant="0.0"/>
-                                                </constraint>
-                                                <constraint firstAttribute="trailing" secondItem="7qh-65-LDX" secondAttribute="trailing" id="gAs-wT-Nff"/>
-                                                <constraint firstAttribute="centerY" secondItem="1bR-Ya-Lif" secondAttribute="centerY" id="ngJ-Qm-taE"/>
-                                                <constraint firstItem="1bR-Ya-Lif" firstAttribute="leading" secondItem="f5R-ZS-Lkt" secondAttribute="leading" constant="3" id="uI0-8D-Hei">
-                                                    <variation key="widthClass=compact" constant="2"/>
-                                                </constraint>
-                                                <constraint firstItem="7qh-65-LDX" firstAttribute="leading" secondItem="f5R-ZS-Lkt" secondAttribute="leading" priority="800" constant="8" id="zw5-ZP-z8a"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="imageWidth" destination="pzd-2A-Vs3" id="23i-hx-M2I"/>
-                                            <outlet property="twitImgView" destination="1bR-Ya-Lif" id="5cx-Yu-Z6W"/>
-                                            <outlet property="twitText" destination="7qh-65-LDX" id="ir5-Yh-yqT"/>
-                                            <outlet property="twitUserScreenName" destination="1y2-Ao-QO8" id="6z8-Fd-NFA"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="9pv-A4-QxB" id="NX6-hi-9R2"/>
+                                    <outlet property="delegate" destination="9pv-A4-QxB" id="w0g-3B-ZI1"/>
                                 </connections>
                             </tableView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="ksenks" borderStyle="roundedRect" placeholder="screen_name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hxZ-Ih-h8a">
@@ -158,7 +87,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="-320"/>
+            <point key="canvasLocation" x="778" y="-320.5"/>
         </scene>
         <!--Настройки-->
         <scene sceneID="wg7-f3-ORb">

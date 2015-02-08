@@ -20,6 +20,11 @@
 const NSString *UpdateTwitsNotificationIdentifier   = @"UpdateTwitsNotificationIdentifier";
 const NSString *GotImageDataNotificationIdentifier  = @"GotImageDataNotificationIdentifier";
 
+static NSString *const cellIdentifier = @"twitCell";
+
+// значение высоты ячейки по умолчанию
+const CGFloat rowDefHeight = 60.0f;
+
 @interface TwitsViewController () <UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UPKTwitsAndUsersContainer *container;
@@ -27,6 +32,8 @@ const NSString *GotImageDataNotificationIdentifier  = @"GotImageDataNotification
 @property (nonatomic, strong) NSTimer *reloadTimer;
 @property (nonatomic, assign) NSUInteger numberOfTicks;
 @property (weak, nonatomic) IBOutlet UITextField *screenNameTextField;
+
+@property (nonatomic, strong) UPKTwitCell *prototypeCell;
 @end
 
 @implementation TwitsViewController
@@ -36,8 +43,8 @@ const NSString *GotImageDataNotificationIdentifier  = @"GotImageDataNotification
     // Do any additional setup after loading the view, typically from a nib.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTwits:) name:[UpdateTwitsNotificationIdentifier copy] object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotImageData:) name:[GotImageDataNotificationIdentifier copy] object:nil];
-    [self.tableView setTableFooterView:[UIView new]];
-    //чтобы не было некрасивых линий внизу таблицы
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([UPKTwitCell class]) bundle:[NSBundle mainBundle]] forCellReuseIdentifier:cellIdentifier];
+    [self.tableView setTableFooterView:[UIView new]]; //чтобы не было некрасивых линий внизу таблицы
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)]];
     [self loadIt:nil];
 }
@@ -161,9 +168,7 @@ const NSString *GotImageDataNotificationIdentifier  = @"GotImageDataNotification
     return self.container.twits.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"twitCell";
-    UPKTwitCell *cell = (UPKTwitCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+- (void)configureCell:(UPKTwitCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     UPKTwit *twit = [self.container.twits objectAtIndex:indexPath.row];
     NSString *twitText = twit.text;
     UPKUser *user = [self.container.users objectForKey:twit.userIdString];
@@ -181,8 +186,46 @@ const NSString *GotImageDataNotificationIdentifier  = @"GotImageDataNotification
     }
 #endif
     [cell prepareViewWithUserScreenName:userScreenName andText:twitText andImgData:imgData];
-    return cell;
 }
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UPKTwitCell *cell = (UPKTwitCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    [self configureCell:cell forRowAtIndexPath:indexPath];
+    
+    return cell;
+    
+}
+
+- (UPKTwitCell *)prototypeCell {
+    if (!_prototypeCell) {
+        //https://github.com/smileyborg/TableViewCellWithAutoLayout/blob/master/TableViewCellWithAutoLayout/TableViewController/RJTableViewController.m#L166
+        //знаю, что может быть утечка до 1 ячейки на каждый созданный такой контроллер
+        _prototypeCell = (UPKTwitCell *)[self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    }
+    return _prototypeCell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Issue With Device Orientation Changes (too big row heights)
+    // The fix is to first ensure the width of the prototype cell is set to width of the table view when calculating the row height.
+    // all this is for cell dimensions calculations, this cells will never be
+    [self configureCell:self.prototypeCell forRowAtIndexPath:indexPath];
+    self.prototypeCell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableView.bounds), CGRectGetHeight(self.prototypeCell.bounds));
+    
+    [self configureCell:self.prototypeCell forRowAtIndexPath:indexPath];
+    [self.prototypeCell layoutIfNeeded];
+    
+    CGSize size = [self.prototypeCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    
+    if (size.height < rowDefHeight) {
+        size.height = rowDefHeight - 1.0f;
+    }
+    
+    return size.height+1;
+}
+
 
 #pragma mark - gotImageData notification
 
