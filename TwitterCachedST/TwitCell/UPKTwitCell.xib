@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -22,8 +23,8 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="457" translatesAutoresizingMaskIntoConstraints="NO" id="Lrv-lH-B5g">
-                        <rect key="frame" x="102" y="22" width="462" height="19.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="457" translatesAutoresizingMaskIntoConstraints="NO" id="Lrv-lH-B5g">
+                        <rect key="frame" x="102" y="22" width="462" height="94"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -32,7 +33,6 @@
                         <rect key="frame" x="4" y="22" width="94" height="94.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="94" id="4DJ-A8-qcF"/>
-                            <constraint firstAttribute="height" constant="94" id="Hcu-oz-IF5"/>
                         </constraints>
                     </imageView>
                 </subviews>
@@ -43,6 +43,7 @@
                     <constraint firstItem="X8e-wW-Gh1" firstAttribute="leading" secondItem="fGb-TS-U4H" secondAttribute="leading" id="Ugv-Hp-YE2"/>
                     <constraint firstItem="Lrv-lH-B5g" firstAttribute="leading" secondItem="X8e-wW-Gh1" secondAttribute="trailing" constant="4" id="f0t-FS-wOf"/>
                     <constraint firstItem="X8e-wW-Gh1" firstAttribute="top" secondItem="fGb-TS-U4H" secondAttribute="bottom" constant="4" id="gqi-Je-Ptf"/>
+                    <constraint firstItem="X8e-wW-Gh1" firstAttribute="height" secondItem="X8e-wW-Gh1" secondAttribute="width" id="k2y-ih-pT8"/>
                     <constraint firstAttribute="trailing" secondItem="fGb-TS-U4H" secondAttribute="trailing" constant="4" id="nSr-Mn-uKa"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="X8e-wW-Gh1" secondAttribute="bottom" constant="4" id="qL5-r7-vVt"/>
                     <constraint firstAttribute="trailing" secondItem="Lrv-lH-B5g" secondAttribute="trailing" constant="4" id="taE-Nm-dRX"/>
@@ -50,7 +51,6 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="imageHeight" destination="Hcu-oz-IF5" id="dvZ-nC-2dU"/>
                 <outlet property="imageWidth" destination="4DJ-A8-qcF" id="yMH-1t-atd"/>
                 <outlet property="twitImgView" destination="X8e-wW-Gh1" id="z1T-ck-51t"/>
                 <outlet property="twitText" destination="Lrv-lH-B5g" id="3yj-ah-IXs"/>
