@@ -1,0 +1,513 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8440F4301BFF14BD00CC3B5A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8440F42F1BFF14BD00CC3B5A /* main.m */; };
+		8440F4331BFF14BD00CC3B5A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8440F4321BFF14BD00CC3B5A /* AppDelegate.m */; };
+		8440F4391BFF14BD00CC3B5A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8440F4371BFF14BD00CC3B5A /* Main.storyboard */; };
+		8440F43B1BFF14BD00CC3B5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8440F43A1BFF14BD00CC3B5A /* Assets.xcassets */; };
+		8440F43E1BFF14BD00CC3B5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8440F43C1BFF14BD00CC3B5A /* LaunchScreen.storyboard */; };
+		8440F44B1BFF1A5500CC3B5A /* AAKConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8440F44A1BFF1A5500CC3B5A /* AAKConstants.m */; };
+		8440F44E1BFF1C3000CC3B5A /* AAKTweetListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8440F44D1BFF1C3000CC3B5A /* AAKTweetListViewController.m */; };
+		8440F4541BFF1D9D00CC3B5A /* AAKTweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8440F4531BFF1D9D00CC3B5A /* AAKTweetCell.m */; };
+		8440F4571BFF1F2A00CC3B5A /* AAKSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8440F4561BFF1F2A00CC3B5A /* AAKSettingsViewController.m */; };
+		8440F45A1BFF257D00CC3B5A /* AAKPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 8440F4591BFF257D00CC3B5A /* AAKPreferences.m */; };
+		8440F45F1BFF27A400CC3B5A /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8440F45E1BFF27A400CC3B5A /* libsqlite3.tbd */; };
+		8440F4651BFF281C00CC3B5A /* AAKRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8440F4641BFF281C00CC3B5A /* AAKRouter.m */; };
+		8440F4871BFF405700CC3B5A /* AAKSingleRequestCapsule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8440F4861BFF405700CC3B5A /* AAKSingleRequestCapsule.m */; };
+		8440F48A1BFF40DD00CC3B5A /* AAKSingleTweetRequestCapsule.m in Sources */ = {isa = PBXBuildFile; fileRef = 8440F4891BFF40DD00CC3B5A /* AAKSingleTweetRequestCapsule.m */; };
+		8440F48D1BFF418D00CC3B5A /* AAKClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8440F48C1BFF418D00CC3B5A /* AAKClient.m */; };
+		8440F4941BFF43C400CC3B5A /* AAKDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 8440F4931BFF43C400CC3B5A /* AAKDAO.m */; };
+		8440F4971BFF44D800CC3B5A /* AAKTweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8440F4961BFF44D800CC3B5A /* AAKTweet.m */; };
+		8440F49A1BFF459A00CC3B5A /* AAKUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8440F4991BFF459A00CC3B5A /* AAKUser.m */; };
+		8440F49D1BFF45C400CC3B5A /* AAKData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8440F49C1BFF45C400CC3B5A /* AAKData.m */; };
+		9498689B1C00A0560050C5A3 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 949868901C00A0560050C5A3 /* FMDatabase.m */; };
+		9498689C1C00A0560050C5A3 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 949868921C00A0560050C5A3 /* FMDatabaseAdditions.m */; };
+		9498689D1C00A0560050C5A3 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 949868941C00A0560050C5A3 /* FMDatabasePool.m */; };
+		9498689E1C00A0560050C5A3 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 949868961C00A0560050C5A3 /* FMDatabaseQueue.m */; };
+		9498689F1C00A0560050C5A3 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 949868991C00A0560050C5A3 /* FMResultSet.m */; };
+		949868A21C00A0D90050C5A3 /* AAKTweetsAndUsersContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 949868A11C00A0D90050C5A3 /* AAKTweetsAndUsersContainer.m */; };
+		949868A41C00A10E0050C5A3 /* AAKTweetDefault.db in Resources */ = {isa = PBXBuildFile; fileRef = 949868A31C00A1060050C5A3 /* AAKTweetDefault.db */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		8440F42B1BFF14BD00CC3B5A /* AAKTwitterDigger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AAKTwitterDigger.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8440F42F1BFF14BD00CC3B5A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8440F4311BFF14BD00CC3B5A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		8440F4321BFF14BD00CC3B5A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		8440F4381BFF14BD00CC3B5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8440F43A1BFF14BD00CC3B5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8440F43D1BFF14BD00CC3B5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8440F43F1BFF14BD00CC3B5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8440F4491BFF1A5500CC3B5A /* AAKConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAKConstants.h; path = Models/AAKConstants.h; sourceTree = "<group>"; };
+		8440F44A1BFF1A5500CC3B5A /* AAKConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAKConstants.m; path = Models/AAKConstants.m; sourceTree = "<group>"; };
+		8440F44C1BFF1C3000CC3B5A /* AAKTweetListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAKTweetListViewController.h; path = Controllers/AAKTweetListViewController.h; sourceTree = "<group>"; };
+		8440F44D1BFF1C3000CC3B5A /* AAKTweetListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAKTweetListViewController.m; path = Controllers/AAKTweetListViewController.m; sourceTree = "<group>"; };
+		8440F4521BFF1D9D00CC3B5A /* AAKTweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAKTweetCell.h; path = Views/AAKTweetCell.h; sourceTree = "<group>"; };
+		8440F4531BFF1D9D00CC3B5A /* AAKTweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAKTweetCell.m; path = Views/AAKTweetCell.m; sourceTree = "<group>"; };
+		8440F4551BFF1F2A00CC3B5A /* AAKSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAKSettingsViewController.h; path = Controllers/AAKSettingsViewController.h; sourceTree = "<group>"; };
+		8440F4561BFF1F2A00CC3B5A /* AAKSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAKSettingsViewController.m; path = Controllers/AAKSettingsViewController.m; sourceTree = "<group>"; };
+		8440F4581BFF257D00CC3B5A /* AAKPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAKPreferences.h; path = Models/AAKPreferences.h; sourceTree = "<group>"; };
+		8440F4591BFF257D00CC3B5A /* AAKPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAKPreferences.m; path = Models/AAKPreferences.m; sourceTree = "<group>"; };
+		8440F45E1BFF27A400CC3B5A /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		8440F4631BFF281C00CC3B5A /* AAKRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAKRouter.h; path = Models/AAKRouter.h; sourceTree = "<group>"; };
+		8440F4641BFF281C00CC3B5A /* AAKRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAKRouter.m; path = Models/AAKRouter.m; sourceTree = "<group>"; };
+		8440F47A1BFF3EBF00CC3B5A /* AAKTweetAsyncProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAKTweetAsyncProvider.h; path = Models/DataProviderProtocol/AAKTweetAsyncProvider.h; sourceTree = "<group>"; };
+		8440F4851BFF405700CC3B5A /* AAKSingleRequestCapsule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAKSingleRequestCapsule.h; path = Models/Client/SingleRequestCapsule/AAKSingleRequestCapsule.h; sourceTree = "<group>"; };
+		8440F4861BFF405700CC3B5A /* AAKSingleRequestCapsule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAKSingleRequestCapsule.m; path = Models/Client/SingleRequestCapsule/AAKSingleRequestCapsule.m; sourceTree = "<group>"; };
+		8440F4881BFF40DD00CC3B5A /* AAKSingleTweetRequestCapsule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAKSingleTweetRequestCapsule.h; path = Models/Client/SingleRequestCapsule/AAKSingleTweetRequestCapsule.h; sourceTree = "<group>"; };
+		8440F4891BFF40DD00CC3B5A /* AAKSingleTweetRequestCapsule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAKSingleTweetRequestCapsule.m; path = Models/Client/SingleRequestCapsule/AAKSingleTweetRequestCapsule.m; sourceTree = "<group>"; };
+		8440F48B1BFF418D00CC3B5A /* AAKClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAKClient.h; path = Models/Client/AAKClient.h; sourceTree = "<group>"; };
+		8440F48C1BFF418D00CC3B5A /* AAKClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAKClient.m; path = Models/Client/AAKClient.m; sourceTree = "<group>"; };
+		8440F4921BFF43C400CC3B5A /* AAKDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAKDAO.h; path = Models/DAO/AAKDAO.h; sourceTree = "<group>"; };
+		8440F4931BFF43C400CC3B5A /* AAKDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAKDAO.m; path = Models/DAO/AAKDAO.m; sourceTree = "<group>"; };
+		8440F4951BFF44D800CC3B5A /* AAKTweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAKTweet.h; path = Models/AAKTweet.h; sourceTree = "<group>"; };
+		8440F4961BFF44D800CC3B5A /* AAKTweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAKTweet.m; path = Models/AAKTweet.m; sourceTree = "<group>"; };
+		8440F4981BFF459A00CC3B5A /* AAKUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAKUser.h; path = Models/AAKUser.h; sourceTree = "<group>"; };
+		8440F4991BFF459A00CC3B5A /* AAKUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAKUser.m; path = Models/AAKUser.m; sourceTree = "<group>"; };
+		8440F49B1BFF45C400CC3B5A /* AAKData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAKData.h; path = Models/AAKData.h; sourceTree = "<group>"; };
+		8440F49C1BFF45C400CC3B5A /* AAKData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAKData.m; path = Models/AAKData.m; sourceTree = "<group>"; };
+		9498688F1C00A0560050C5A3 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabase.h; path = ThirdParty/fmdb/FMDatabase.h; sourceTree = "<group>"; };
+		949868901C00A0560050C5A3 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabase.m; path = ThirdParty/fmdb/FMDatabase.m; sourceTree = "<group>"; };
+		949868911C00A0560050C5A3 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabaseAdditions.h; path = ThirdParty/fmdb/FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		949868921C00A0560050C5A3 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseAdditions.m; path = ThirdParty/fmdb/FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		949868931C00A0560050C5A3 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabasePool.h; path = ThirdParty/fmdb/FMDatabasePool.h; sourceTree = "<group>"; };
+		949868941C00A0560050C5A3 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabasePool.m; path = ThirdParty/fmdb/FMDatabasePool.m; sourceTree = "<group>"; };
+		949868951C00A0560050C5A3 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabaseQueue.h; path = ThirdParty/fmdb/FMDatabaseQueue.h; sourceTree = "<group>"; };
+		949868961C00A0560050C5A3 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseQueue.m; path = ThirdParty/fmdb/FMDatabaseQueue.m; sourceTree = "<group>"; };
+		949868971C00A0560050C5A3 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDB.h; path = ThirdParty/fmdb/FMDB.h; sourceTree = "<group>"; };
+		949868981C00A0560050C5A3 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMResultSet.h; path = ThirdParty/fmdb/FMResultSet.h; sourceTree = "<group>"; };
+		949868991C00A0560050C5A3 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMResultSet.m; path = ThirdParty/fmdb/FMResultSet.m; sourceTree = "<group>"; };
+		949868A01C00A0D90050C5A3 /* AAKTweetsAndUsersContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAKTweetsAndUsersContainer.h; path = Models/DataProviderProtocol/AAKTweetsAndUsersContainer.h; sourceTree = "<group>"; };
+		949868A11C00A0D90050C5A3 /* AAKTweetsAndUsersContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAKTweetsAndUsersContainer.m; path = Models/DataProviderProtocol/AAKTweetsAndUsersContainer.m; sourceTree = "<group>"; };
+		949868A31C00A1060050C5A3 /* AAKTweetDefault.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = AAKTweetDefault.db; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8440F4281BFF14BD00CC3B5A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8440F45F1BFF27A400CC3B5A /* libsqlite3.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8440F4221BFF14BD00CC3B5A = {
+			isa = PBXGroup;
+			children = (
+				8440F42D1BFF14BD00CC3B5A /* AAKTwitterDigger */,
+				8440F42C1BFF14BD00CC3B5A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8440F42C1BFF14BD00CC3B5A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8440F42B1BFF14BD00CC3B5A /* AAKTwitterDigger.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8440F42D1BFF14BD00CC3B5A /* AAKTwitterDigger */ = {
+			isa = PBXGroup;
+			children = (
+				8440F45B1BFF273100CC3B5A /* Third party */,
+				8440F4481BFF1A0500CC3B5A /* Controllers */,
+				8440F4471BFF1A0100CC3B5A /* Views */,
+				8440F4461BFF19FD00CC3B5A /* Models */,
+				8440F4451BFF19F100CC3B5A /* Storyboards */,
+				8440F4311BFF14BD00CC3B5A /* AppDelegate.h */,
+				8440F4321BFF14BD00CC3B5A /* AppDelegate.m */,
+				8440F43A1BFF14BD00CC3B5A /* Assets.xcassets */,
+				8440F43F1BFF14BD00CC3B5A /* Info.plist */,
+				8440F42E1BFF14BD00CC3B5A /* Supporting Files */,
+			);
+			path = AAKTwitterDigger;
+			sourceTree = "<group>";
+		};
+		8440F42E1BFF14BD00CC3B5A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				949868A31C00A1060050C5A3 /* AAKTweetDefault.db */,
+				8440F45E1BFF27A400CC3B5A /* libsqlite3.tbd */,
+				8440F42F1BFF14BD00CC3B5A /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8440F4451BFF19F100CC3B5A /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				8440F43C1BFF14BD00CC3B5A /* LaunchScreen.storyboard */,
+				8440F4371BFF14BD00CC3B5A /* Main.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		8440F4461BFF19FD00CC3B5A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8440F48E1BFF438E00CC3B5A /* DataAccessObject */,
+				8440F4831BFF3FE400CC3B5A /* Client */,
+				8440F4661BFF3CB400CC3B5A /* DataProviderProtocol */,
+				8440F4491BFF1A5500CC3B5A /* AAKConstants.h */,
+				8440F44A1BFF1A5500CC3B5A /* AAKConstants.m */,
+				8440F4581BFF257D00CC3B5A /* AAKPreferences.h */,
+				8440F4591BFF257D00CC3B5A /* AAKPreferences.m */,
+				8440F4631BFF281C00CC3B5A /* AAKRouter.h */,
+				8440F4641BFF281C00CC3B5A /* AAKRouter.m */,
+				8440F4951BFF44D800CC3B5A /* AAKTweet.h */,
+				8440F4961BFF44D800CC3B5A /* AAKTweet.m */,
+				8440F4981BFF459A00CC3B5A /* AAKUser.h */,
+				8440F4991BFF459A00CC3B5A /* AAKUser.m */,
+				8440F49B1BFF45C400CC3B5A /* AAKData.h */,
+				8440F49C1BFF45C400CC3B5A /* AAKData.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		8440F4471BFF1A0100CC3B5A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8440F4521BFF1D9D00CC3B5A /* AAKTweetCell.h */,
+				8440F4531BFF1D9D00CC3B5A /* AAKTweetCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		8440F4481BFF1A0500CC3B5A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8440F44C1BFF1C3000CC3B5A /* AAKTweetListViewController.h */,
+				8440F44D1BFF1C3000CC3B5A /* AAKTweetListViewController.m */,
+				8440F4551BFF1F2A00CC3B5A /* AAKSettingsViewController.h */,
+				8440F4561BFF1F2A00CC3B5A /* AAKSettingsViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		8440F45B1BFF273100CC3B5A /* Third party */ = {
+			isa = PBXGroup;
+			children = (
+				8440F4671BFF3D3400CC3B5A /* Fmdb */,
+			);
+			name = "Third party";
+			sourceTree = "<group>";
+		};
+		8440F4661BFF3CB400CC3B5A /* DataProviderProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				8440F47A1BFF3EBF00CC3B5A /* AAKTweetAsyncProvider.h */,
+				949868A01C00A0D90050C5A3 /* AAKTweetsAndUsersContainer.h */,
+				949868A11C00A0D90050C5A3 /* AAKTweetsAndUsersContainer.m */,
+			);
+			name = DataProviderProtocol;
+			sourceTree = "<group>";
+		};
+		8440F4671BFF3D3400CC3B5A /* Fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				9498688F1C00A0560050C5A3 /* FMDatabase.h */,
+				949868901C00A0560050C5A3 /* FMDatabase.m */,
+				949868911C00A0560050C5A3 /* FMDatabaseAdditions.h */,
+				949868921C00A0560050C5A3 /* FMDatabaseAdditions.m */,
+				949868931C00A0560050C5A3 /* FMDatabasePool.h */,
+				949868941C00A0560050C5A3 /* FMDatabasePool.m */,
+				949868951C00A0560050C5A3 /* FMDatabaseQueue.h */,
+				949868961C00A0560050C5A3 /* FMDatabaseQueue.m */,
+				949868971C00A0560050C5A3 /* FMDB.h */,
+				949868981C00A0560050C5A3 /* FMResultSet.h */,
+				949868991C00A0560050C5A3 /* FMResultSet.m */,
+			);
+			name = Fmdb;
+			sourceTree = "<group>";
+		};
+		8440F4831BFF3FE400CC3B5A /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				8440F4841BFF401F00CC3B5A /* SingleRequestCapsule */,
+				8440F48B1BFF418D00CC3B5A /* AAKClient.h */,
+				8440F48C1BFF418D00CC3B5A /* AAKClient.m */,
+			);
+			name = Client;
+			sourceTree = "<group>";
+		};
+		8440F4841BFF401F00CC3B5A /* SingleRequestCapsule */ = {
+			isa = PBXGroup;
+			children = (
+				8440F4851BFF405700CC3B5A /* AAKSingleRequestCapsule.h */,
+				8440F4861BFF405700CC3B5A /* AAKSingleRequestCapsule.m */,
+				8440F4881BFF40DD00CC3B5A /* AAKSingleTweetRequestCapsule.h */,
+				8440F4891BFF40DD00CC3B5A /* AAKSingleTweetRequestCapsule.m */,
+			);
+			name = SingleRequestCapsule;
+			sourceTree = "<group>";
+		};
+		8440F48E1BFF438E00CC3B5A /* DataAccessObject */ = {
+			isa = PBXGroup;
+			children = (
+				8440F4921BFF43C400CC3B5A /* AAKDAO.h */,
+				8440F4931BFF43C400CC3B5A /* AAKDAO.m */,
+			);
+			name = DataAccessObject;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8440F42A1BFF14BD00CC3B5A /* AAKTwitterDigger */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8440F4421BFF14BD00CC3B5A /* Build configuration list for PBXNativeTarget "AAKTwitterDigger" */;
+			buildPhases = (
+				8440F4271BFF14BD00CC3B5A /* Sources */,
+				8440F4281BFF14BD00CC3B5A /* Frameworks */,
+				8440F4291BFF14BD00CC3B5A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AAKTwitterDigger;
+			productName = AAKTwitterDigger;
+			productReference = 8440F42B1BFF14BD00CC3B5A /* AAKTwitterDigger.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8440F4231BFF14BD00CC3B5A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = AAK;
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = 8of;
+				TargetAttributes = {
+					8440F42A1BFF14BD00CC3B5A = {
+						CreatedOnToolsVersion = 7.1.1;
+					};
+				};
+			};
+			buildConfigurationList = 8440F4261BFF14BD00CC3B5A /* Build configuration list for PBXProject "AAKTwitterDigger" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8440F4221BFF14BD00CC3B5A;
+			productRefGroup = 8440F42C1BFF14BD00CC3B5A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8440F42A1BFF14BD00CC3B5A /* AAKTwitterDigger */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8440F4291BFF14BD00CC3B5A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				949868A41C00A10E0050C5A3 /* AAKTweetDefault.db in Resources */,
+				8440F43E1BFF14BD00CC3B5A /* LaunchScreen.storyboard in Resources */,
+				8440F43B1BFF14BD00CC3B5A /* Assets.xcassets in Resources */,
+				8440F4391BFF14BD00CC3B5A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8440F4271BFF14BD00CC3B5A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8440F4941BFF43C400CC3B5A /* AAKDAO.m in Sources */,
+				8440F44E1BFF1C3000CC3B5A /* AAKTweetListViewController.m in Sources */,
+				9498689D1C00A0560050C5A3 /* FMDatabasePool.m in Sources */,
+				8440F4971BFF44D800CC3B5A /* AAKTweet.m in Sources */,
+				949868A21C00A0D90050C5A3 /* AAKTweetsAndUsersContainer.m in Sources */,
+				8440F4571BFF1F2A00CC3B5A /* AAKSettingsViewController.m in Sources */,
+				9498689E1C00A0560050C5A3 /* FMDatabaseQueue.m in Sources */,
+				9498689B1C00A0560050C5A3 /* FMDatabase.m in Sources */,
+				9498689C1C00A0560050C5A3 /* FMDatabaseAdditions.m in Sources */,
+				8440F45A1BFF257D00CC3B5A /* AAKPreferences.m in Sources */,
+				9498689F1C00A0560050C5A3 /* FMResultSet.m in Sources */,
+				8440F4331BFF14BD00CC3B5A /* AppDelegate.m in Sources */,
+				8440F48A1BFF40DD00CC3B5A /* AAKSingleTweetRequestCapsule.m in Sources */,
+				8440F4871BFF405700CC3B5A /* AAKSingleRequestCapsule.m in Sources */,
+				8440F4541BFF1D9D00CC3B5A /* AAKTweetCell.m in Sources */,
+				8440F4651BFF281C00CC3B5A /* AAKRouter.m in Sources */,
+				8440F48D1BFF418D00CC3B5A /* AAKClient.m in Sources */,
+				8440F49D1BFF45C400CC3B5A /* AAKData.m in Sources */,
+				8440F44B1BFF1A5500CC3B5A /* AAKConstants.m in Sources */,
+				8440F49A1BFF459A00CC3B5A /* AAKUser.m in Sources */,
+				8440F4301BFF14BD00CC3B5A /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		8440F4371BFF14BD00CC3B5A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8440F4381BFF14BD00CC3B5A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8440F43C1BFF14BD00CC3B5A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8440F43D1BFF14BD00CC3B5A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8440F4401BFF14BD00CC3B5A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8440F4411BFF14BD00CC3B5A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8440F4431BFF14BD00CC3B5A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = AAKTwitterDigger/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.8of.AAKTwitterDigger;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		8440F4441BFF14BD00CC3B5A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = AAKTwitterDigger/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.8of.AAKTwitterDigger;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8440F4261BFF14BD00CC3B5A /* Build configuration list for PBXProject "AAKTwitterDigger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8440F4401BFF14BD00CC3B5A /* Debug */,
+				8440F4411BFF14BD00CC3B5A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8440F4421BFF14BD00CC3B5A /* Build configuration list for PBXNativeTarget "AAKTwitterDigger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8440F4431BFF14BD00CC3B5A /* Debug */,
+				8440F4441BFF14BD00CC3B5A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8440F4231BFF14BD00CC3B5A /* Project object */;
+}

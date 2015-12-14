@@ -1,0 +1,28 @@
+//
+//  AAKConstants.h
+//  AAKTwitterDigger
+//
+//  Created by Andrey Konstantinov on 20/11/15.
+//  Copyright © 2015 8of. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+// Defaults
+FOUNDATION_EXPORT NSString *const DEFAULTS_KEY_IS_AVATARS_ENABLED;
+
+// Twitter keys
+FOUNDATION_EXPORT NSString *const TWITTER_OAUTH_CONSUMER_KEY;
+FOUNDATION_EXPORT NSString *const TWITTER_OAUTH_TOKEN;
+FOUNDATION_EXPORT NSString *const TWITTER_SECRET_1;
+FOUNDATION_EXPORT NSString *const TWITTER_SECRET_2;
+
+// Notifications
+FOUNDATION_EXPORT NSString *const NOTIFICATION_IDENTIFIER_UPDATE_TWEETS;
+FOUNDATION_EXPORT NSString *const NOTIFICATION_IDENTIFIER_RELOAD_LOCAL_TWEETS_LIST;
+
+// Cells
+FOUNDATION_EXPORT NSString *const TWEET_CELL_IDENTIFIER;
+
+// Etc
+FOUNDATION_EXPORT NSString *const DEFAULT_TWITTER_USERNAME;
